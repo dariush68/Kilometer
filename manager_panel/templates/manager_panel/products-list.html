@@ -1,0 +1,200 @@
+{% extends 'store/_base.html' %}
+{% load static %}
+{% block title %}
+    <title>پنل مدیریت | اضافه کردن کالا</title>
+{% endblock %}
+{% block css %}
+    {# CSS files... #}
+    <link rel="stylesheet" href="{% static 'css/add-product.css' %}">
+    <link rel="stylesheet" href="{% static 'css/products-list.css' %}">
+{% endblock %}
+
+
+{% block main %}
+    <main class="profile-user-page default">
+        <div class="container">
+            <div class="row">
+                <div class="profile-page col-xl-9 col-lg-8 col-md-12 order-2">
+                    <div class="row">
+                        <div class="col-12 mb-4">
+                            <h1 class="title-tab-content">لیست کالاها</h1>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-4 col-xl-3 border rounded py-3 px-4" style="background-color: white">
+                            <div id="search-box" class="d-flex">
+                                <i class="fa fa-search"></i>
+                                <input type="text" id="product-search-title" class="input-field-small" placeholder="جستجو در محصولات">
+                            </div>
+                            <h6 style="font-size: 16px" class="mt-4">دسته بندی ها:</h6>
+                            <div id="categories-box" class="mt-3">
+                                <ul class="list-unstyled" id="categories-list">
+
+                                </ul>
+                            </div>
+                            <h6 style="font-size: 16px; margin-top: 30px">برند ها:</h6>
+                            <div id="brands-box" class="mt-4 pr-3">
+
+                            </div>
+                            <hr class="w-100 my-4">
+                            <div class="mt-4">
+                                <button class="btn w-100 btn-info" onclick="getProductsList()">اعمال فیلتر</button>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-8 col-xl-9">
+                            <div class="row mx-0">
+                                <div class="col-12 d-flex mb-3">
+                                    <div id="table-view" class="view-active ml-2" data-toggle="tooltip" data-placement="top" title="نمایش جدولی">
+                                        <i class="fa fa-th align-middle"></i>
+                                    </div>
+                                    <div id="list-view" data-toggle="tooltip" data-placement="top" title="نمایش لیستی">
+                                        <i class="fa fa-list-ul align-middle"></i>
+                                    </div>
+                                </div>
+                                <div class="col-12 row mx-0" id="products-list-box">
+
+                                </div>
+                                <div class="col-12 row mx-0" style="display: none" id="products-list-box-list-view">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% include 'manager_panel/_management-panel-sidebar.html' %}
+            </div>
+        </div>
+        <div class="modal fade" id="edit-product-modal" tabindex="-1" role="dialog" aria-labelledby="edit-product-modal-label" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title" id="edit-product-modal-label">ویرایش محصول</h6>
+                    </div>
+                    <div class="modal-body">
+                        <div class="d-flex">
+                            <ul class="nav nav-tabs list-unstyled edit-type" id="edit-type-list">
+                                <li class="tab-active" id="main-details-tab" onclick="editTypeChange($(this).attr('id'))">
+                                    مشخصات اصلی
+                                </li>
+                                <li class="type-mode-tab" id="picture-gallery-tab" onclick="editTypeChange($(this).attr('id'))">
+                                    گالری تصاویر
+                                </li>
+                                <li class="type-mode-tab" id="colors-tab" onclick="editTypeChange($(this).attr('id'))">
+                                    رنگ بندی و قیمت
+                                </li>
+                            </ul>
+                        </div>
+                        <div id="edit-type-content">
+                            <div class="row mt-4 mx-0" id="main-details-content">
+                                <div class="col-12 col-md-6 my-3 my-md-0">
+                                    <div>
+                                        <label for="product-category">دسته بندی اصلی:</label>
+                                        <div class="d-flex">
+                                            <select class="custom-select" id="product-category">
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 my-3 my-md-0">
+                                    <div>
+                                        <label for="product-sub-category">دسته بندی فرعی:</label>
+                                        <div class="d-flex">
+                                            <select class="custom-select" id="product-sub-category">
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 my-3">
+                                    <div>
+                                        <label for="product-title">عنوان محصول:</label>
+                                        <input type="text" class="input-field-small" id="product-title">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 my-3">
+                                    <div>
+                                        <label for="product-brand">برند محصول:</label>
+                                        <div class="d-flex">
+                                            <select class="custom-select" id="product-brand">
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="w-100 my-4 mx-0">
+                                <div class="col-12">
+                                    <div class="row mx-0" id="feature-category-box">
+
+                                    </div>
+                                    <button class="btn btn-sm btn-success mr-auto d-flex" id="add-new-feature-category">اضافه کردن دسته ویژگی</button>
+                                </div>
+                                <hr class="w-100"/>
+                                <div class="d-flex pt-2 justify-content-end w-100">
+                                    <button type="button" class="btn btn-sm btn-info ml-1" style="width: 160px" id="update-product-ware">تایید مشخصات اصلی</button>
+                                    <button type="button" class="btn btn-sm btn-secondary mr-1" style="width: 95px" data-dismiss="modal">لغو</button>
+                                </div>
+                            </div>
+                            <div class="row mt-4 mx-0" id="picture-gallery-content" style="display: none">
+                                <div class="col-12 row mx-0 d-flex justify-content-start" id="images-box">
+
+                                </div>
+                                <hr class="w-100 my-3">
+                                <div id="new-images-box" class="col-12 row mx-0">
+                                    <div class="col-12 d-flex justify-content-end mb-3">
+                                        <button class="btn btn-sm btn-info" onclick="addNewImage()">اضافه کردن تصویر جدید</button>
+                                    </div>
+                                </div>
+                                <hr class="w-100 my-3">
+                                <div id="image-upload-failed" class="alert alert-danger w-100 mt-4" style="display: none">ترتیب انتخابی شما، موجود است. ترتیب عکس را تغییر دهید!</div>
+                                <div class="d-flex pt-2 justify-content-end w-100">
+                                    <button type="button" class="btn btn-sm btn-secondary mr-1" style="width: 95px" data-dismiss="modal">لغو</button>
+                                </div>
+                            </div>
+                            <div class="row mt-4 mx-0" id="colors-content" style="display: none">
+                                <div class="col-12 row mx-0 d-flex justify-content-start" id="colors-box">
+
+                                </div>
+                                <hr class="w-100 my-3">
+                                <div id="new-price-color-box" class="col-12 row mx-0">
+                                    <div class="col-12 d-flex justify-content-end mb-3">
+                                        <button class="btn btn-sm btn-info" onclick="addNewPriceColor()">اضافه کردن رنگ</button>
+                                    </div>
+                                </div>
+                                <hr class="w-100 my-3">
+                                <div class="d-flex pt-2 justify-content-end w-100">
+                                    <button type="button" class="btn btn-sm btn-secondary mr-1" style="width: 95px" data-dismiss="modal">لغو</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="delete-product-modal" tabindex="-1" role="dialog" aria-labelledby="delete-product-modal-label" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title" id="delete-product-modal-label">حذف محصول</h6>
+                    </div>
+                    <div class="modal-body">
+                        آیا از حذف این محصول مطمئن هستید؟
+                    </div>
+                    <hr class="w-100 my-4">
+                    <div class="modal-footer d-flex justify-content-end">
+                        <button type="button" class="btn btn-sm btn-info ml-1" id="submit-delete-product" style="width: 95px">تایید</button>
+                        <button type="button" class="btn btn-sm btn-secondary mr-1" style="width: 95px" data-dismiss="modal">لغو</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <input type="hidden" id="camera-icon-url" url="{% static 'assets/images/camera.svg' %}">
+{% endblock %}
+
+
+
+{% block js %}
+    {# JS files... #}
+    <script type="text/javascript" src="{% static 'js/products-list.js' %}"></script>
+{% endblock %}

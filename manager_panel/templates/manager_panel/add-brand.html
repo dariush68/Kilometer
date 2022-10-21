@@ -1,0 +1,187 @@
+{% extends 'store/_base.html' %}
+{% load static %}
+{% block title %}
+    <title>پنل مدیریت | اضافه کردن دسته بندی</title>
+{% endblock %}
+{% block css %}
+    {# CSS files... #}
+    <link rel="stylesheet" href="{% static 'css/add-product-category.css' %}">
+{% endblock %}
+
+
+{% block main %}
+    <main class="profile-user-page default">
+        <div class="container">
+            <div class="row">
+                <div class="profile-page col-xl-9 col-lg-8 col-md-12 order-2">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="col-12">
+                                <h1 class="title-tab-content">اضافه کردن برند</h1>
+                            </div>
+
+                            <!-- brand -->
+                            <div class="card">
+                                <div class="card-header bg-default">
+                                    <span class="text-white font-weight-bold">برند</span>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <!-- list brand -->
+                                        <div class="col-6">
+                                            <!-- serach -->
+                                            <div class="ml-2 mb-3">
+                                                <input id="search-brand" class="form-control mr-sm-2" type="search" placeholder="جست وجو" aria-label="Search">
+                                            </div>
+
+                                            <!-- table -->
+                                            <div class="table-responsive">
+                                                <table class="table table-order table-sm table-hover">
+                                                    <thead class="thead-light">
+                                                    <tr>
+                                                        <th scope="col" style="width: 15%">ردیف</th>
+                                                        <th scope="col" style="width: 35%">نام فارسی برند</th>
+                                                        <th scope="col" style="width: 30%">نام انگلیسی برند</th>
+                                                        <th scope="col" style="width: 20%">حذف</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody id="brand-tbody" class="table-body">
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                        <!-- edit/add category section -->
+                                        <div class="col-6">
+                                            <div class="border p-2">
+                                                <form id="form-add-brand-apc">
+                                                    <input type="hidden" id="brand-id">
+
+                                                    <!--image file upoad sample-->
+                                                    <div class="form-group col-md-12">
+                                                        <div class="box text-center">
+                                                            <!-- fileuploader view component -->
+                                                            <div class="text-center">
+                                                                <div class="margin-bottom-20">
+                                                                    <img id="img-brand-selected" class="thumbnail box-center margin-top-20 img-thumbnail" alt="No image"
+                                                                         src="{% static 'assets/images/camera.svg' %}" style="width: 400px; height: 200px; object-fit: contain">
+                                                                </div>
+                                                                <small class="text-black-50">سایز تصویر لوگو شرکت 200*400</small>
+                                                                <div class="form-check mb-2">
+                                                                    <input type="checkbox" id="pic-remove">
+                                                                    <label class="form-check-label mr-4" for="pic-remove">حذف تصویر</label>
+                                                                </div>
+                                                            </div>
+                                                            <!-- ./fileuploader view component -->
+                                                            <div class="input-group input-group-sm mb-3" dir="ltr">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text">بارگذاری</span>
+                                                                </div>
+                                                                <div class="custom-file input-group input-group-sm">
+                                                                    <input type="file" class="custom-file-input" name="logo" id="brand-image" placeholder="انتخاب فایل">
+                                                                    <label class="custom-file-label" for="brand-image">انتخاب فایل</label>
+                                                                    <div class="invalid-feedback">
+                                                                        لطفا تصویری را برای برند انتخاب کنید
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+
+                                                    <!-- fa name -->
+                                                    <div class="input-group input-group-sm mb-3" dir="ltr">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">نام فارسی</span>
+                                                        </div>
+                                                        <input id="brand-fa-title" name="fa_name" dir="rtl" type="text" class="form-control ms-form-filed" placeholder="نام فارسی برند">
+                                                        <div class="invalid-feedback">
+                                                            لطفا عنوان فارسی برند را وارد کنید (تکراری نباشد)
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- en name -->
+                                                    <div class="input-group input-group-sm mb-3" dir="ltr">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">نام انگلیسی</span>
+                                                        </div>
+                                                        <input id="brand-en-title" name="en_name" dir="rtl" type="text" class="form-control ms-form-filed" placeholder="نام انگلیسی برند (جهت نمایش در URL)">
+                                                        <div class="invalid-feedback">
+                                                            لطفا عنوان انگلیسی برند را وارد کنید (تکراری نباشد)
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- image alt -->
+                                                    <div class="input-group input-group-sm mb-3" dir="ltr">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">متن جایگزین تصویر</span>
+                                                        </div>
+                                                        <input id="brand-img-alt" name="logo_alt" dir="rtl" type="text" class="form-control ms-form-filed" placeholder="متن جایگزین تصویر">
+                                                        <div class="invalid-feedback">
+                                                            لطفا عنوان مناسبی را برای متن جایگزین تصویر وارد کنید
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- description -->
+                                                    <div class="input-group input-group-sm" dir="ltr">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">توضیحات</span>
+                                                        </div>
+                                                        <textarea id="brand-description" name="description" dir="rtl" rows="3" class="form-control" placeholder="توضیحات اختیاری برای برند"></textarea>
+                                                    </div>
+
+                                                </form>
+
+                                                <div class="modal-footer d-flex justify-content-end">
+                                                    <button type="button" class="btn btn-success mr-1 btn-round" onclick="addBrand()">افزودن</button>
+                                                    <button type="button" style="width: 120px" class="btn btn-info btn-round" onclick="editBrand()">تغییر</button>
+                                                    <a onclick="clearBrandForm()"><i class="fa fa-eraser text-white"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                {% include 'manager_panel/_management-panel-sidebar.html' %}
+            </div>
+        </div>
+
+        <!-- modal delete brand -->
+        <div class="modal fade" id="delete-brand-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="delete-category-label">حذف برند</h5>
+                    </div>
+                    <hr style="width: 100%">
+                    <div class="modal-body">
+                        <strong>
+                            آیا از حذف برند
+                            <b id="brand-select-delete" class="text-danger"></b>
+                            مطمئن هستید؟
+                        </strong>
+                    </div>
+                    <hr style="width: 100%;">
+                    <div class="modal-footer d-flex justify-content-end">
+                        <button type="button" class="btn btn-info ml-1" onclick="submitDeleteBrand()" style="width: 100px!important;">تایید</button>
+                        <button type="button" class="btn btn-secondary mr-1" style="width: 100px" data-dismiss="modal">لغو</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
+
+
+
+{% block js %}
+    {# JS files... #}
+    <script type="text/javascript" src="{% static 'js/add-brand.js' %}"></script>
+{% endblock %}

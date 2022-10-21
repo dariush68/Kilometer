@@ -1,0 +1,203 @@
+{% extends 'store/_base.html' %}
+{% load static %}
+{% block title %}
+    <title>کالا نگار</title>
+{% endblock %}
+
+{% block main %}
+    <main class="main default">
+        <div class="container">
+            <div class="row">
+                <aside class="sidebar col-12 col-lg-3 order-2 order-lg-1">
+                    <div class="sidebar-inner default">
+                        <div class="widget-banner widget card">
+                            <a href="#" target="_top">
+                                <img class="img-fluid" src="../../static/store/asset/image/homePage/banner/1455.jpg" alt="">
+                            </a>
+                        </div>
+                        <div class="widget-services widget card">
+                            <div class="row">
+                                <div class="feature-item col-12">
+                                    <a href="#" target="_blank">
+                                        <img src="../../static/store/asset/image/homePage/svg/return-policy.svg" alt="ضمانت برگشت">
+                                    </a>
+                                    <p>ضمانت برگشت</p>
+                                </div>
+                                <div class="feature-item col-6">
+                                    <a href="#" target="_blank">
+                                        <img src="../../static/store/asset/image/homePage/svg/payment-terms.svg" alt="پرداخت درمحل">
+                                    </a>
+                                    <p>پرداخت درمحل</p>
+                                </div>
+                                <div class="feature-item col-6">
+                                    <a href="#" target="_blank">
+                                        <img src="../../static/store/asset/image/homePage/svg/delivery.svg" alt="تحویل اکسپرس">
+                                    </a>
+                                    <p>تحویل اکسپرس</p>
+                                </div>
+                                <div class="feature-item col-6">
+                                    <a href="#" target="_blank">
+                                        <img src="../../static/store/asset/image/homePage/svg/origin-guarantee.svg" alt="تضمین بهترین قیمت">
+                                    </a>
+                                    <p>تضمین بهترین قیمت</p>
+                                </div>
+                                <div class="feature-item col-6">
+                                    <a href="#" target="_blank">
+                                        <img src="../../static/store/asset/image/homePage/svg/contact-us.svg" alt="پشتیبانی 24 ساعته">
+                                    </a>
+                                    <p>پشتیبانی 24 ساعته</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget-suggestion widget card">
+                            <header class="card-header">
+                                <h3 class="card-title">پیشنهاد لحظه ای</h3>
+                            </header>
+                            <div id="progressBar">
+                                <div class="slide-progress"></div>
+                            </div>
+                            <div id="suggestion-slider" class="owl-carousel owl-theme">
+                                <div class="item">
+                                    <a href="#">
+                                        <img src="../../static/store/asset/image/homePage/product/692674-200x200.jpg" class="w-100" alt="">
+                                    </a>
+                                    <h3 class="product-title">
+                                        <a href="#"> لپ تاپ ۱۵ اینچی ایسوس مدل FX503VD - A </a>
+                                    </h3>
+                                    <div class="price">
+                                        <span class="amount">5,700,000<span>تومان</span></span>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <a href="#">
+                                        <img src="../../static/store/asset/image/homePage/product/e75a73-200x200.jpg" class="w-100" alt="">
+                                    </a>
+                                    <h3 class="product-title">
+                                        <a href="#"> لپ تاپ ۱۳ اینچی اپل مدل MacBook Pro MLH12 همراه با تاچ بار
+                                        </a>
+                                    </h3>
+                                    <div class="price">
+                                        <del><span class="amount">10,300,000<span>تومان</span></span></del>
+                                        <span class="amount">1,099,000<span>تومان</span></span>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <a href="#">
+                                        <img src="../../static/store/asset/image/homePage/product/482250-200x200.jpg" class="w-100" alt="">
+                                    </a>
+                                    <h3 class="product-title">
+                                        <a href="#"> لپ تاپ ۱۵ اینچی اپل مدل ۲۰۱۷ MacBook Pro MPTT2 همراه با
+                                            تاچ
+                                            بار </a>
+                                    </h3>
+                                    <div class="price">
+                                        <del><span class="amount">16,800,000<span>تومان</span></span></del>
+                                        <span class="amount">16,286,000<span>تومان</span></span>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <a href="#">
+                                        <img src="../../static/store/asset/image/homePage/product/19a2cc-200x200.jpg" class="w-100" alt="">
+                                    </a>
+                                    <h3 class="product-title">
+                                        <a href="#"> لپ تاپ ۱۳ اینچی اپل مدل MacBook Air MQD32 2017 </a>
+                                    </h3>
+                                    <div class="price">
+                                        <del><span class="amount">6,000,000<span>تومان</span></span></del>
+                                        <span class="amount">5,746,000<span>تومان</span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+                <div class="col-12 col-lg-9 order-1 order-lg-2">
+                    <section id="main-slider" class="carousel slide carousel-fade card" data-ride="carousel">
+                        <ol class="carousel-indicators" id="slideshow-indicators-container">
+{#                            <li data-target="#main-slider" data-slide-to="0" class="active"></li>#}
+{#                            <li data-target="#main-slider" data-slide-to="1"></li>#}
+{#                            <li data-target="#main-slider" data-slide-to="2"></li>#}
+{#                            <li data-target="#main-slider" data-slide-to="3"></li>#}
+                        </ol>
+                        <div class="carousel-inner" id="main-slideshow-container">
+
+{#                            <div class="carousel-item active">#}
+{#                                <a class="d-block" href="#">#}
+{#                                    <img src="../../static/store/asset/image/homePage/slider/22f48d8e-6a8f-431c-985d-76ab0e1e59405_21_1_1.jpg"#}
+{#                                        class="d-block w-100" alt="">#}
+{#                                </a>#}
+{#                            </div>#}
+{#                            <div class="carousel-item">#}
+{#                                <a class="d-block" href="#">#}
+{#                                    <img src="../../static/store/asset/image/homePage/slider/a264d696-9c12-4dd9-bdc1-12c13a3632b329_21_1_1.jpg"#}
+{#                                        class="d-block w-100" alt="">#}
+{#                                </a>#}
+{#                            </div>#}
+{#                            <div class="carousel-item">#}
+{#                                <a class="d-block" href="#">#}
+{#                                    <img src="../../static/store/asset/image/homePage/slider/c0a50594-df40-412b-84f8-c7d6872fb83620_21_1_1.jpg"#}
+{#                                        class="d-block w-100" alt="">#}
+{#                                </a>#}
+{#                            </div>#}
+{#                            <div class="carousel-item">#}
+{#                                <a class="d-block" href="#">#}
+{#                                    <img src="../../static/store/asset/image/homePage/slider/d1844e92-e5a9-4aef-8ea7-49be936422ca6_21_1_1.jpg"#}
+{#                                        class="d-block w-100" alt="">#}
+{#                                </a>#}
+{#                            </div>#}
+                        </div>
+                        <a class="carousel-control-prev" href="#main-slider" role="button" data-slide="prev">
+                            <i class="now-ui-icons arrows-1_minimal-right"></i>
+                        </a>
+                        <a class="carousel-control-next" href="#main-slider" data-slide="next">
+                            <i class="now-ui-icons arrows-1_minimal-left"></i>
+                        </a>
+                    </section>
+                    <section id="top-products-container">
+
+                    </section>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="brand-slider card">
+                        <header class="card-header">
+                            <h3 class="card-title"><span>برندهای ویژه</span></h3>
+                        </header>
+                        <div class="owl-carousel">
+                            <div class="item">
+                                <a href="#">
+                                    <img src="../../static/store/asset/image/homePage/brand/1076.png" alt="">
+                                </a>
+                            </div>
+                            <div class="item">
+                                <a href="#">
+                                    <img src="../../static/store/asset/image/homePage/brand/1078.png" alt="">
+                                </a>
+                            </div>
+                            <div class="item">
+                                <a href="#">
+                                    <img src="../../static/store/asset/image/homePage/brand/1080.png" alt="">
+                                </a>
+                            </div>
+                            <div class="item">
+                                <a href="#">
+                                    <img src="../../static/store/asset/image/homePage/brand/2315.png" alt="">
+                                </a>
+                            </div>
+                            <div class="item">
+                                <a href="#">
+                                    <img src="../../static/store/asset/image/homePage/brand/5189.png" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="{% static 'store/js/home.js' %}"></script>
+{% endblock %}

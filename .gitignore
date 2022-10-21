@@ -1,0 +1,35 @@
+# ignore an entire directory
+/.idea/
+/store/__pycache__/
+/store/migrations/
+/manager_panel/migrations/
+/user_panel/migrations/
+/store/static/kilometer/webfonts/
+/venv/
+/__pycache__/
+/store/api/__pycache__/
+/node_modules/
+/media/
+/doc/xncolorpicker-main/
+
+
+# ignore a file type
+# *.json
+*.pyc
+*.sqlite3
+*.xml
+*.log
+
+# add an exception (using !) to the preceding rule to track a specific file
+# !package.json
+
+# ignore a single file
+# mycode.class
+stderr.log
+/store/__init__.py
+/kilometer/__init__.py
+/manager_panel/__init__.py
+/user_panel/__init__.py
+/store/api/__init__.py
+/package-lock.json
+/kalanegar_web/.env

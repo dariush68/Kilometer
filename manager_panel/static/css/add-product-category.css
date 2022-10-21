@@ -1,0 +1,69 @@
+.table-responsive {
+    overflow-x: hidden;
+}
+#add-category-box, #add-sub-category-box, #add-sub-sub-category-box{
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+}
+#select-category, #select-sub-category {
+    padding: 3px 25px;
+    border-radius: 5px;
+    border-color: lightgray;
+    font-size: 12px;
+}
+#category-tbody > tr:hover,
+#sub-category-tbody > tr:hover,
+#sub-sub-category-tbody > tr:hover {
+    background-color: whitesmoke;
+}
+@media (min-width: 768px) {
+    .btn-info {
+        width: 75%!important;
+        margin: 0 auto;
+    }
+}
+textarea {
+    border-radius: 5px;
+    border-color: lightgray;
+    padding: 5px 10px;
+    resize: none;
+}
+label {
+    font-weight: bold;
+}
+i.fa{
+    font-size: 18px;
+    cursor: pointer;
+    color: grey!important;
+}
+tbody {
+    display: block;
+    max-height: 600px;
+    min-height: 186px;
+    overflow-y: auto;
+}
+thead, tbody tr {
+    display:table;
+    width:100%;
+    table-layout:fixed;/* even columns width , fix width of table too*/
+}
+tbody div {
+    overflow-y: hidden;
+}
+
+.card{
+    box-shadow: 0px 0px #ffffff;
+    border: 1px solid #e1e1e1;
+    border-radius: 2px;
+}
+#colorpicker{
+    /*position: fixed;*/
+    /*right: 0;*/
+    /*margin-top: 100px;*/
+    border: 1px solid #fff;
+    display: inline-block;
+    margin-bottom: 3px;
+}

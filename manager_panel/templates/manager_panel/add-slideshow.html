@@ -1,0 +1,127 @@
+{% extends 'store/_base.html' %}
+{% load static %}
+{% block title %}
+    <title>پنل مدیریت | اضافه کردن اسلایدشو</title>
+{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/add-slideshow.css' %}">
+{% endblock %}
+
+{% block main %}
+    <main class="profile-user-page default">
+        <div class="container">
+            <div class="row">
+                <div class="profile-page col-xl-9 col-lg-8 col-md-12 order-2">
+                    <h1 class="title-tab-content">اسلایدشو</h1>
+                    <hr />
+                    <div id="slideshow-container" class="row mx-0">
+
+                    </div>
+                    <hr />
+                    <div class="d-flex justify-content-center">
+                        <button class="btn btn-info w-50" data-toggle="modal" data-target="#add-slideshow-modal">
+                            اضافه کردن اسلایدشو
+                        </button>
+                    </div>
+                </div>
+                {% include 'manager_panel/_management-panel-sidebar.html' %}
+            </div>
+        </div>
+
+
+
+        <div class="modal fade" id="add-slideshow-modal" tabindex="-1" role="dialog" aria-labelledby="add-slideshow-modal-label" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title" id="add-slideshow-modal-label">اضافه کردن تگ:</h6>
+                    </div>
+                    <div class="modal-body">
+                        <div class="thumbnail-image col-12 col-sm-6 col-md-4 col-xl-3 mb-4">
+                            <div class="avatar-edit">
+                                <input type='file' id="slideshow-upload" onchange="getSlideshowImage(this)" accept=".png, .jpg, .jpeg" />
+                                <label for="slideshow-upload">
+                                    <i class="fa fa-pencil"></i>
+                                </label>
+                            </div>
+                            <div class="avatar-preview">
+                                <div id="slideshow-preview" style="background-image: url({% static 'assets/images/camera.svg' %});">
+
+                                </div>
+                            </div>
+                        </div>
+                        <input type="text" class="input-field-small" style="direction: ltr" id="add-slideshow-link" placeholder="لینک مربوطه" />
+                        <div class="checkbox mt-4">
+                            <input id="slideshow-shown" type="checkbox">
+                            <label for="slideshow-shown">
+                                قابل نمایش
+                            </label>
+                        </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-end">
+                        <button type="button" class="btn btn-secondary ml-1 btn-sm" style="width: 92px" data-dismiss="modal">لغو</button>
+                        <button type="button" class="btn btn-info mr-1 btn-sm" style="width: 92px" onclick="addSlideshow()">تایید</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="delete-slideshow-modal" tabindex="-1" role="dialog" aria-labelledby="add-slideshow-modal-label" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title" id="add-slideshow-modal-label">حذف کردن اسلایدشو:</h6>
+                    </div>
+                    <div class="modal-body">
+                        <div id="delete-slideshow-box">
+                            <strong>آیا از حذف کردن اسلایدشو مطمئن هستید؟</strong>
+                        </div>
+                    </div>
+                    <hr class="w-100 mx-4" />
+                    <div class="modal-footer d-flex justify-content-end">
+                        <button type="button" class="btn btn-secondary ml-1 btn-sm" style="width: 92px" data-dismiss="modal">لغو</button>
+                        <button type="button" class="btn btn-info mr-1 btn-sm" style="width: 92px" onclick="submitSlideshowDelete()">تایید</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="edit-slideshow-modal" tabindex="-1" role="dialog" aria-labelledby="edit-slideshow-modal-label" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title" id="edit-slideshow-modal-label">ویرایش تگ:</h6>
+                    </div>
+                    <div class="modal-body">
+                        <div class="thumbnail-image col-12 col-sm-6 col-md-4 col-xl-3 mb-4">
+                            <div class="avatar-edit">
+                                <input type='file' id="edit-slideshow-upload" onchange="getEditSlideshowImage(this)" accept=".png, .jpg, .jpeg" />
+                                <label for="edit-slideshow-upload">
+                                    <i class="fa fa-pencil"></i>
+                                </label>
+                            </div>
+                            <div class="avatar-preview">
+                                <div id="edit-slideshow-preview" style="background-image: url({% static 'assets/images/camera.svg' %});">
+
+                                </div>
+                            </div>
+                        </div>
+                        <input type="text" class="input-field-small" style="direction: ltr" id="edit-slideshow-link" placeholder="لینک مربوطه" />
+                        <div class="checkbox mt-4">
+                            <input id="edit-slideshow-shown" type="checkbox">
+                            <label for="edit-slideshow-shown">
+                                قابل نمایش
+                            </label>
+                        </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-end">
+                        <button type="button" class="btn btn-secondary ml-1 btn-sm" style="width: 92px" data-dismiss="modal">لغو</button>
+                        <button type="button" class="btn btn-info mr-1 btn-sm" style="width: 92px" onclick="submitEditSlideshow()">تایید</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
+
+{% block js %}
+    <script src="{% static 'js/add-slideshow.js' %}"></script>
+{% endblock %}

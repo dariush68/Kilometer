@@ -1,0 +1,36 @@
+{% extends 'store/_base.html' %}
+{% load static %}
+{% block title %}
+    <title>حساب کاربری | علاقه مندی ها</title>
+{% endblock %}
+
+{% block css %}
+{% endblock %}
+
+{% block main %}
+    <main class="profile-user-page default">
+        <div class="container">
+            <div class="row">
+                <div class="profile-page col-xl-9 col-lg-8 col-md-12 order-2">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="col-12">
+                                <h1 class="title-tab-content">لیست علاقمندی ها</h1>
+                            </div>
+                            <div class="content-section default">
+                                <div class="row" id="favorites-box">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% include 'user_panel/_user-panel-sidebar.html' %}
+            </div>
+        </div>
+    </main>
+{% endblock %}
+
+{% block js %}
+    <script src="{% static 'js/product-favorites.js' %}"></script>
+{% endblock %}

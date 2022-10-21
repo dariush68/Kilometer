@@ -1,0 +1,24 @@
+{% extends 'store/_base.html' %}
+{% load static %}
+{% block title %}
+    <title>صفحه مورد نظر پیدا نشد</title>
+{% endblock %}
+
+{% block css %}
+{% endblock %}
+
+{% block main %}
+    <main class="page-404">
+        <div class="container text-center">
+            <div class="page-404-title">
+                <h1>صفحه‌ای که دنبال آن بودید پیدا نشد!</h1>
+            </div>
+            <div class="page-404-actions">
+                <a href="{% url 'store:home' %}" class="page-404-action page-404-action--primary">صفحه اصلی</a>
+            </div>
+            <div class="page-404-image">
+                <img src="../../static/store/asset/image/homePage/404.png">
+            </div>
+        </div>
+    </main>
+{% endblock %}

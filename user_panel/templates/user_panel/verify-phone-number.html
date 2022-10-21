@@ -1,0 +1,59 @@
+{% extends 'store/_mini-base.html' %}
+{% load static %}
+{% block title %}
+    <title>ایجاد حساب کاربری</title>
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <div class="row">
+            <div class="main-content col-12 col-md-7 col-lg-5 mx-auto">
+                <div class="account-box verify-phone-number">
+                    <div class="logo-in-box text-center pt-3 pb-2">
+                        <a href="#" class="d-block">
+                            <img src="{% static 'store/asset/image/homePage/logo.png' %}" alt="">
+                        </a>
+                    </div>
+                    <div class="message-light">
+                        برای شماره همراه<span id="user-phone" style="font-weight: bold"></span> کد تایید ارسال گردید
+                        <a href="{% url 'api-user:user_signup' %}" class="btn-link-border form-account-link">
+                            ویرایش شماره
+                        </a>
+                    </div>
+                    <div class="account-box-content">
+                        <form class="form-account">
+                            <div class="form-account-title">کد تایید را وارد کنید</div>
+                            <div class="form-account-row numbers-verify">
+                                <div class="lines-number-input" onkeyup="getNumVal()">
+                                    <input type="text" class="line-number" maxlength="1" id="number-1">
+                                    <input type="text" class="line-number" maxlength="1" id="number-2">
+                                    <input type="text" class="line-number" maxlength="1" id="number-3">
+                                    <input type="text" class="line-number" maxlength="1" id="number-4">
+                                    <input type="text" class="line-number" maxlength="1" id="number-5">
+                                    <input type="text" class="line-number" maxlength="1" id="number-6">
+                                </div>
+                            </div>
+                            <div class="form-account-row">
+                                دریافت مجدد کد تایید(
+                                <p id="countdown-verify-end"></p>)
+                            </div>
+                        </form>
+                    </div>
+                    <div class="account-box-footer">
+                        <span>کاربر جدید هستید؟</span>
+                        <a href="{% url 'user_panel:signup' %}" class="btn-link-border">ثبت‌نام در
+                            کالانگار</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <input type="hidden" url="{% url 'user_panel:welcome' %}" id="url-welcome">
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="{% static 'js/signup.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/verify-phone-number.js' %}"></script>
+{% endblock %}

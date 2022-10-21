@@ -1,0 +1,150 @@
+{% extends 'store/_base.html' %}
+{% load static %}
+{% block title %}
+    <title>پنل مدیریت | اضافه کردن رنگ</title>
+{% endblock %}
+{% block css %}
+    {# CSS files... #}
+    <link rel="stylesheet" href="{% static 'css/add-product-category.css' %}">
+    <link rel="stylesheet" href="{% static 'js/color-picker/classic.min.css' %}">
+    <link rel="stylesheet" href="{% static 'js/color-picker/color-picker-styles.css' %}">
+{% endblock %}
+
+
+{% block main %}
+    <main class="profile-user-page default">
+        <div class="container">
+            <div class="row">
+                <div class="profile-page col-xl-9 col-lg-8 col-md-12 order-2">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="col-12">
+                                <h1 class="title-tab-content">اضافه کردن رنگ</h1>
+                            </div>
+
+
+
+
+                            <!-- color -->
+                            <div class="card">
+                                <div class="card-header bg-default">
+                                    <span class="text-white font-weight-bold">رنگ</span>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <!-- list brand -->
+                                        <div class="col-6">
+                                            <!-- serach -->
+                                            <div class="ml-2 mb-3">
+                                                <input id="search-color" class="form-control mr-sm-2" type="search" placeholder="جست وجو" aria-label="Search">
+                                            </div>
+
+                                            <!-- table -->
+                                            <div class="table-responsive">
+                                                <table class="table table-order">
+                                                    <thead class="thead-light">
+                                                        <tr>
+                                                            <th scope="col" style="width: 15%">ردیف</th>
+                                                            <th scope="col" style="width: 35%">نام رنگ</th>
+                                                            <th scope="col" style="width: 30%">رنگ</th>
+                                                            <th scope="col" style="width: 20%">حذف</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="color-tbody" class="table-body">
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                        <!-- edit/add category section -->
+                                        <div class="col-6">
+                                            <div class="border p-2">
+                                                <form id="form-add-color-apc">
+                                                    <input type="hidden" id="color-id">
+
+                                                    <!-- color hex -->
+                                                    <div class="text_align-center" dir="ltr">
+                                                        <span class="float-left text-black-50 small" style="margin-top: 15px">برای انتخاب رنگ بر روی کادر کلیلک کنید</span>
+                                                        <div dir="ltr" id="colorpicker" class="p-2 rounded" style="border-color: #e5e5e5"></div>
+                                                    </div>
+
+                                                    <!-- color hex -->
+                                                    <div class="input-group input-group-sm mb-3" dir="ltr">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">کد رنگ</span>
+                                                        </div>
+                                                        <input id="color-hex" name="hex_code" dir="rtl" type="text" class="form-control ms-form-filed" placeholder="نام رنگ دلخواه" style="font-family: Helvetica">
+                                                        <div class="invalid-feedback">
+                                                            لطفا کد رنگ را وارد کنید (تکراری نباشد)
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- color title -->
+                                                    <div class="input-group input-group-sm mb-3" dir="ltr">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">نام رنگ</span>
+                                                        </div>
+                                                        <input id="color-title" name="name" dir="rtl" type="text" class="form-control ms-form-filed" placeholder="نام رنگ دلخواه">
+                                                        <div class="invalid-feedback">
+                                                            لطفا نام رنگ را وارد کنید (تکراری نباشد)
+                                                        </div>
+                                                    </div>
+
+                                                </form>
+
+                                                <div class="modal-footer d-flex justify-content-end">
+                                                    <button type="button" class="btn btn-success mr-1 btn-round" onclick="addColor()">افزودن</button>
+                                                    <button type="button" style="width: 120px" class="btn btn-info btn-round" onclick="editColor()">تغییر</button>
+                                                    <a onclick="clearColorForm()"><i class="fa fa-eraser text-white"></i></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+                {% include 'manager_panel/_management-panel-sidebar.html' %}
+            </div>
+        </div>
+        <!-- delete color modal -->
+        <div class="modal fade" id="delete-color-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="delete-color-label">حذف رنگ</h5>
+                    </div>
+                    <hr style="width: 100%">
+                    <div class="modal-body">
+                    <div id="delete-tag-box">
+                        <strong>آیا از حذف کردن رنگ
+                            <b id="color-select-delete" class="text-danger"></b>
+                            مطمئن هستید؟</strong>
+                    </div>
+                </div>
+                    <hr style="width: 100%;">
+                    <div class="modal-footer d-flex justify-content-end">
+                        <button type="button" class="btn btn-info ml-1" onclick="submitDeleteColor()" style="width: 100px!important;">تایید</button>
+                        <button type="button" class="btn btn-secondary mr-1" style="width: 100px" data-dismiss="modal">لغو</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
+
+
+
+{% block js %}
+    {# JS files... #}
+{#    <script type="text/javascript" src="{% static 'js/color-picker/pickr.es5.min.js' %}"></script>#}
+{#    <script type="text/javascript" src="{% static 'js/color-picker/color-picker-scripts.js' %}"></script>#}
+    <script type="text/javascript" src="{% static 'js/color-picker/xncolorpicker.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/add-color.js' %}"></script>
+
+{% endblock %}

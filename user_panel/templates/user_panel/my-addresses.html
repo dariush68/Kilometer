@@ -1,0 +1,47 @@
+{% extends 'store/_base.html' %}
+{% load static %}
+{% block title %}
+    <title>حساب کاربری | آدرس های من</title>
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="../../static/css/my-addresses.css">
+{% endblock %}
+
+{% block main %}
+    <main class="profile-user-page default">
+        <div class="container">
+            <div class="row">
+                <div class="profile-page col-xl-9 col-lg-8 col-md-12 order-2">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="col-12">
+                                <h1 class="title-tab-content">آدرس های من</h1>
+                            </div>
+                            <div class="content-section default">
+                                <div class="alert alert-danger w-100 text-center d-none" id="no-address-found">آدرسی وجود ندارد</div>
+                                <div id="my-addresses-container"></div>
+                                <hr />
+                                <div id="new-addresses-container">
+
+                                </div>
+                                <div class="d-flex w-100 justify-content-end">
+                                    <button onclick="addNewAddress()" class="btn btn-info btn d-flex align-items-center justify-content-center">
+                                        <i class="now-ui-icons ui-1_simple-add ml-2"></i>
+                                        اضافه کردن آدرس
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% include 'user_panel/_user-panel-sidebar.html' %}
+            </div>
+        </div>
+    </main>
+{% endblock %}
+
+
+{% block js %}
+    <script src="../../static/js/my-addresses.js"></script>
+{% endblock %}

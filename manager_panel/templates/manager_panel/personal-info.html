@@ -1,0 +1,70 @@
+{% extends 'store/_base.html' %}
+{% load static %}
+{% block title %}
+    <title>حساب کاربری | اطلاعات شخصی</title>
+{% endblock %}
+
+{% block css %}
+{% endblock %}
+
+{% block main %}
+    <main class="profile-user-page default">
+        <div class="container">
+            <div class="row">
+                <div class="profile-page col-xl-9 col-lg-8 col-md-12 order-2">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="col-12">
+                                <h1 class="title-tab-content">اطلاعات شخصی</h1>
+                            </div>
+                            <div class="content-section default">
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-6">
+                                        <p>
+                                            <span class="title">نام و نام خانوادگی :</span>
+                                            <span id="manager-name"></span>
+                                        </p>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6">
+                                        <p>
+                                            <span class="title">پست الکترونیک :</span>
+                                            <span id="manager-email"></span>
+                                        </p>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6">
+                                        <p>
+                                            <span class="title">شماره تلفن همراه:</span>
+                                            <span id="manager-phone-number"></span>
+                                        </p>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6">
+                                        <p>
+                                            <span class="title">کد ملی :</span>
+                                            <span id="manager-national-code"></span>
+                                        </p>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6">
+                                        <p>
+                                            <span class="title">شماره کارت :</span>
+                                            <span id="manager-bank-card-number"></span>
+                                        </p>
+                                    </div>
+                                    <div class="col-12 text-center">
+                                        <a href="{% url 'manager_panel:additionalInfo' %}" class="btn-link-border form-account-link">
+                                            ویرایش اطلاعات شخصی
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% include 'manager_panel/_management-panel-sidebar.html' %}
+            </div>
+        </div>
+    </main>
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="{% static 'js/personal-info.js' %}"></script>
+{% endblock %}

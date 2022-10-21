@@ -1,0 +1,97 @@
+{% extends 'store/_base.html' %}
+{% load static %}
+{% block title %}
+    <title>پنل مدیریت | مدیریت کاربران</title>
+{% endblock %}
+{% block css %}
+    {# CSS files... #}
+    <style>
+        .table-responsive{
+            max-height: 600px;
+            overflow-y: auto;
+            {#display: tabl#}
+        }
+    </style>
+{% endblock %}
+
+
+{% block main %}
+    <main class="profile-user-page default">
+        <div class="container">
+            <div class="row">
+                <div class="profile-page col-xl-9 col-lg-8 col-md-12 order-2">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="col-12">
+                                <h1 class="title-tab-content">لیست کاربران</h1>
+                            </div>
+                            <div class="content-section default">
+                                <div id="search-in-users" class="row mx-auto">
+                                    <div class="col-12 col-md-6">
+                                        <label for="search-by-name" class="d-none"></label>
+                                        <input type="text" id="search-by-name" placeholder="جستجو بر اساس نام"
+                                               class="input-field text-right mb-2 ml-md-1"
+                                        >
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <label for="search-by-phone" class="d-none"></label>
+                                        <input type="text" id="search-by-phone" placeholder="جستجو بر اساس شماره"
+                                               class="input-field text-right mb-2 mr-md-1"
+                                        >
+                                    </div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-order">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th scope="col">ردیف</th>
+                                                <th scope="col">نام و نام خانوادگی</th>
+                                                <th scope="col">شماره تلفن</th>
+                                                <th scope="col">کد ملی</th>
+                                                <th scope="col">ایمیل</th>
+                                                <th scope="col">شماره کارت</th>
+                                                <th scope="col">حذف کاربر</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="users-tbody">
+                                            <!-- List of Users go here -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% include 'manager_panel/_management-panel-sidebar.html' %}
+            </div>
+        </div>
+
+
+        <!-- Make Sure to delete user Modal -->
+        <div class="modal fade" id="make-sure" tabindex="-1" role="dialog" aria-labelledby="make-sure-label" aria-hidden="true">
+            <div class="modal-dialog ">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="make-sure-label">حذف کاربر</h5>
+                    </div>
+                    <hr class="w-100 m-0 mt-3"/>
+                    <div class="modal-body">
+                        <p>آیا از حذف این کاربر مطمئن هستید؟</p>
+                    </div>
+                    <hr class="w-100 m-0"/>
+                    <div class="modal-footer d-flex justify-content-end">
+                        <button type="button" class="btn btn-secondary mx-1" style="width: 85px" data-dismiss="modal">لغو</button>
+                        <button type="button" class="btn btn-danger mx-1" style="width: 85px" id="submit-delete" onclick="submitDeleteUser()">تایید</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
+
+
+
+{% block js %}
+    {# JS files... #}
+    <script type="text/javascript" src="{% static 'js/users-list.js' %}"></script>
+{% endblock %}

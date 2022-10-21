@@ -1,0 +1,99 @@
+{% extends 'store/_base.html' %}
+{% block title %}
+    <title>حساب کاربری</title>
+{% endblock %}
+{% load static %}
+{% block css %}
+{% endblock %}
+
+{% block main %}
+    <main class="profile-user-page default">
+        <div class="container">
+            <div class="row">
+                <div class="profile-page col-xl-9 col-lg-8 col-md-12 order-2">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="col-12">
+                                <h1 class="title-tab-content">اطلاعات شخصی</h1>
+                            </div>
+                            <div class="content-section default">
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-6">
+                                        <p>
+                                            <span class="title">نام و نام خانوادگی :</span>
+                                            <span id="main-profile-name"></span>
+                                        </p>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6">
+                                        <p>
+                                            <span class="title">پست الکترونیک :</span>
+                                            <span id="main-profile-email"></span>
+                                        </p>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6">
+                                        <p>
+                                            <span class="title">شماره تلفن همراه:</span>
+                                            <span id="main-profile-phone-number"></span>
+                                        </p>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6">
+                                        <p>
+                                            <span class="title">کد ملی :</span>
+                                            <span id="main-profile-national-code"></span>
+                                        </p>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6">
+                                        <p>
+                                            <span class="title">شماره کارت :</span>
+                                            <span id="main-profile-bank-card-number"></span>
+                                        </p>
+                                    </div>
+                                    <div class="col-12 text-center">
+                                        <a href="{% url 'user_panel:profileAdditionalInfo' %}" class="btn-link-border form-account-link">
+                                            ویرایش اطلاعات شخصی
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="col-12">
+                                <h1 class="title-tab-content">لیست آخرین علاقمندی ها</h1>
+                            </div>
+                            <div class="content-section default">
+                                <div class="row">
+                                    <div class="col-12" id="last-favorites">
+
+                                    </div>
+                                    <div class="col-12 text-center">
+                                        <a href="{% url 'user_panel:profileFavorites' %}" class="btn-link-border form-account-link">
+                                            مشاهده و ویرایش لیست مورد علاقه
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <h1 class="title-tab-content">آخرین سفارش ها</h1>
+                        </div>
+                        <div class="col-12 text-center">
+                            <div class="content-section pt-5 pb-5">
+                                <div class="icon-empty">
+                                    <i class="now-ui-icons travel_info"></i>
+                                </div>
+                                <h1 class="text-empty">موردی برای نمایش وجود ندارد!</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% include 'user_panel/_user-panel-sidebar.html' %}
+            </div>
+        </div>
+    </main>
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="{% static 'js/profile.js' %}"></script>
+{% endblock %}

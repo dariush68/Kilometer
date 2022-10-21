@@ -1,0 +1,107 @@
+{% extends 'store/_base.html' %}
+{% load static %}
+{% block title %}
+    <title>پنل مدیریت | اضافه کردن تگ</title>
+{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/add-tag.css' %}">
+{% endblock %}
+
+{% block main %}
+    <main class="profile-user-page default">
+        <div class="container">
+            <div class="row">
+                <div class="profile-page col-xl-9 col-lg-8 col-md-12 order-2">
+                    <h1 class="title-tab-content">اضافه کردن تگ</h1>
+                    <hr />
+                    <div class="table-responsive d-flex justify-content-center mx-auto" style="max-width: 700px">
+                        <table class="table table-order" style="width: 95%">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th scope="col" style="width: 100px">ردیف</th>
+                                    <th scope="col">نام فارسی</th>
+                                    <th scope="col">نام انگلیسی</th>
+                                    <th scope="col">عملیات ها</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tag-tbody" class="table-body" style="overflow: auto; max-height: 100px">
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <hr />
+                    <div class="d-flex justify-content-center">
+                        <button class="btn btn-info w-50" id="add-new-tag-btn">
+                            اضافه کردن تگ
+                        </button>
+                    </div>
+                </div>
+                {% include 'manager_panel/_management-panel-sidebar.html' %}
+            </div>
+        </div>
+
+
+
+        <div class="modal fade" id="add-tag-modal" tabindex="-1" role="dialog" aria-labelledby="add-tag-modal-label" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title" id="add-tag-modal-label">اضافه کردن تگ:</h6>
+                    </div>
+                    <div class="modal-body">
+                        <div id="add-tag-box">
+                            <input type="text" class="input-field-small" id="add-tag-fa-name" placeholder="نام فارسی" />
+                            <input type="text" class="input-field-small mt-4" id="add-tag-en-name" placeholder="نام انگلیسی (جهت نمایش در URL)" />
+                        </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-end">
+                        <button type="button" class="btn btn-secondary ml-1 btn-sm" style="width: 92px" data-dismiss="modal">لغو</button>
+                        <button type="button" class="btn btn-info mr-1 btn-sm" style="width: 92px" onclick="addTag()">تایید</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="delete-tag-modal" tabindex="-1" role="dialog" aria-labelledby="add-tag-modal-label" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title" id="add-tag-modal-label">حذف کردن تگ:</h6>
+                    </div>
+                    <div class="modal-body">
+                        <div id="delete-tag-box">
+                            <strong>آیا از حذف کردن تگ مطمئن هستید؟</strong>
+                        </div>
+                    </div>
+                    <hr class="w-100 mx-4" />
+                    <div class="modal-footer d-flex justify-content-end">
+                        <button type="button" class="btn btn-secondary ml-1 btn-sm" style="width: 92px" data-dismiss="modal">لغو</button>
+                        <button type="button" class="btn btn-info mr-1 btn-sm" style="width: 92px" onclick="submitDeleteTag()">تایید</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="edit-tag-modal" tabindex="-1" role="dialog" aria-labelledby="edit-tag-modal-label" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title" id="edit-tag-modal-label">ویرایش تگ:</h6>
+                    </div>
+                    <div class="modal-body">
+                        <div id="add-tag-box">
+                            <input type="text" class="input-field-small" id="edit-tag-fa-name" placeholder="نام فارسی" />
+                            <input type="text" class="input-field-small mt-4" id="edit-tag-en-name" placeholder="نام انگلیسی (جهت نمایش در URL)" />
+                        </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-end">
+                        <button type="button" class="btn btn-secondary ml-1 btn-sm" style="width: 92px" data-dismiss="modal">لغو</button>
+                        <button type="button" class="btn btn-info mr-1 btn-sm" style="width: 92px" onclick="submitEditTag()">تایید</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
+
+{% block js %}
+    <script src="{% static 'js/add-tag.js' %}"></script>
+{% endblock %}

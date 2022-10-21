@@ -1,0 +1,43 @@
+{% extends 'store/_base.html' %}
+{% load static %}
+{% block title %}
+    <title id="page-title"></title>
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'store/css/category-products.css' %}">
+{% endblock %}
+
+{% block main %}
+    <main class="default">
+        <div class="category-products-container container">
+            <div class="sub-cat-title">
+                دسته بندی های
+                <strong style="color: #0fafdd" id="cat-name"></strong>
+            </div>
+            <div class="mx-0" id="this-cat-subs-container">
+
+            </div>
+            <div id="last-cat-products-container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="widget widget-product card">
+                            <header class="card-header">
+                                <h3 class="card-title">
+                                    <span id="category-name"></span>
+                                </h3>
+                            </header>
+                            <div class="product-carousel owl-carousel owl-theme" id="category-last-products">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
+
+{% block js %}
+    <script src="{% static 'store/js/category-products.js' %}"></script>
+{% endblock %}

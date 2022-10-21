@@ -1,0 +1,264 @@
+#edit-product-modal {
+    width: 100%;
+    overflow: auto;
+}
+#edit-product-modal > .modal-dialog {
+    max-width: 95%!important;
+    display: flex;
+    margin: 30px auto;
+    height: max-content;
+    min-height: max-content;
+}
+@media (min-width: 768px) {
+    #edit-product-modal > .modal-dialog {
+        max-width: 80%!important;
+    }
+}
+#edit-product-modal > .modal-dialog > .modal-content {
+    width: 100%;
+}
+#edit-product-modal-label {
+    font-size: 18px;
+}
+.custom-select {
+    padding: 3px 25px;
+    border-radius: 5px;
+    border-color: lightgray;
+    font-size: 12px;
+}
+.edit-type {
+    border: 1px solid #efefef;
+    padding: 10px 15px;
+    width: 100%;
+    direction: rtl;
+    display: flex;
+    justify-content: start;
+    border-radius: 3px;
+    max-height: fit-content;
+}
+.edit-type > li{
+    font-weight: bold;
+    float: left;
+    margin: 0 20px;
+    cursor: pointer;
+    padding: 3px 10px;
+    border-radius: 3px;
+    border-top: 2px solid transparent;
+    border-bottom: 2px solid transparent;
+}
+.edit-type > li:after {
+  content: '';
+  display: block;
+  margin: auto;
+  height: 2px;
+  width: 0;
+  background: transparent;
+  transition: width .2s ease, background-color .5s ease;
+}
+.edit-type > li:hover:after {
+    width: 100%;
+    background: darkred;
+}
+
+.tab-active {
+    background-color: #e0e0e0;
+}
+
+#search-box {
+    position: relative;
+}
+#search-box > i {
+    position: absolute;
+    height: 100%!important;
+    width: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    color: lightgray;
+}
+#search-box > input {
+    padding-right: 35px;
+}
+.checkbox label,
+.radio label {
+    padding-right: 35px;
+    padding-left: 0;
+    border-color: grey!important;
+}
+.checkbox label::before,
+.checkbox label::after {
+    right: 0;
+    left: auto;
+    border-color: grey!important;
+}
+
+#categories-list > li {
+    margin: 0 -24px;
+    padding: 0 25px;
+    line-height: 40px;
+    cursor: pointer;
+}
+#categories-list > li:hover {
+    background-color: whitesmoke;
+}
+
+.sub-category-list {
+    margin: 0 -24px;
+    padding-top: 10px;
+    padding-bottom: 1px;
+    padding-right: 35px;
+    background-color: #eeeeee;
+}
+
+.product-tile {
+    background-color: white;
+    height: fit-content;
+    min-height: 310px;
+    border: 1px solid lightgray;
+    width: 100%;
+    padding: 0;
+    border-radius: 5px;
+    overflow: hidden;
+}
+#list-view, #table-view {
+    width: 44px;
+    height: 44px;
+    margin: 0 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: #DDDDDD;
+}
+#list-view > i, #table-view > i {
+    font-size: 18px;
+    color: grey;
+}
+
+.view-active {
+    box-sizing: border-box;
+    border: 1.5px solid grey;
+    /*box-shadow: 0 2px 17px 0 rgba(0, 0, 0, 0.4);*/
+}
+.product-tile:hover {
+    box-shadow: 0 2px 17px 0 rgba(0, 0, 0, .09);
+    z-index: 11;
+}
+.product-image-box {
+    margin: 0;
+    width: 100%;
+    padding: 5px;
+    min-height: 200px!important;
+    max-height: 200px!important;
+}
+.product-image-box > img {
+    width: 100%;
+    object-fit: cover;
+    height: 190px!important;
+}
+
+
+.avatar-upload {
+    position: relative;
+    min-height: 300px;
+    max-height: 300px;
+    display: flex;
+    flex-flow: column;
+    /*justify-content: center;*/
+}
+.thumbnail-image {
+    position: relative;
+    min-height: 200px;
+    max-height: 200px;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+}
+.avatar-edit {
+    position: absolute;
+    right: 5px;
+    z-index: 1;
+    top: 5px;
+}
+.image-order-field::-webkit-outer-spin-button,
+.image-order-field::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.image-order-field {
+    -moz-appearance: textfield;
+    width: 70px;
+    text-align: center;
+    margin-right: 15px;
+}
+.avatar-edit > input {
+    display: none;
+}
+.avatar-edit > label {
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    margin-bottom: 0;
+    border-radius: 100%;
+    background: #FFFFFF;
+    border: 1px solid transparent;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.12);
+    cursor: pointer;
+    font-weight: normal;
+    transition: all .2s ease-in-out;
+}
+.avatar-edit > label:hover {
+    background: #f1f1f1;
+    border-color: #d6d6d6;
+}
+.avatar-edit > label > i {
+    color: #757575;
+    font-size: 15px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.delete-image-box {
+    cursor: pointer;
+    z-index: 15;
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    background: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%!important;
+    width: 34px!important;
+    height: 34px!important;
+}
+.delete-image-box:hover {
+    background: #f1f1f1;
+    border-color: #d6d6d6;
+}
+.delete-image-box > i {
+    color: #757575;
+    font-size: 15px!important;
+}
+.avatar-preview {
+    width: 100%;
+    min-height: 200px;
+    height: 100%;
+    position: relative;
+    max-width: 200px;
+    border-radius: 10px;
+    border: 6px solid #F8F8F8;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+}
+.avatar-preview > div {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}

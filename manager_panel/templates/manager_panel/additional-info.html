@@ -1,0 +1,79 @@
+{% extends 'store/_base.html' %}
+{% load static %}
+{% block title %}
+    <title>حساب کاربری | ویرایش اطلاعات شخصی</title>
+{% endblock %}
+
+{% block css %}
+{% endblock %}
+
+{% block main %}
+    <main class="profile-user-page default">
+        <div class="container">
+            <div class="row">
+                <div class="profile-page col-xl-9 col-lg-8 col-md-12 order-2">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="col-12">
+                                <h1 class="title-tab-content">ویرایش اطلاعات شخصی</h1>
+                            </div>
+                            <div class="content-section default">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h1 class="title-tab-content">حساب شخصی</h1>
+                                    </div>
+                                </div>
+                                <div class="form-account">
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-6">
+                                            <div class="form-account-title">نام و نام خانوادگی</div>
+                                            <div class="form-account-row">
+                                                <input class="input-field text-right" id="manager-additional-name" type="text" placeholder="نام خود را وارد نمایید">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-6">
+                                            <div class="form-account-title">کد ملی</div>
+                                            <div class="form-account-row">
+                                                <input class="input-field text-right" id="manager-additional-national-code" type="text" pattern="\d*" maxlength="10" placeholder="کد ملی خود را وارد نمایید">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-6">
+                                            <div class="form-account-title">شماره موبایل</div>
+                                            <div class="form-account-row">
+                                                <input class="input-field text-right" id="manager-additional-phone-number" type="text" pattern="\d*" maxlength="11" placeholder="شماره موبایل خود را وارد نمایید">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-6">
+                                            <div class="form-account-title">شماره کارت</div>
+                                            <div class="form-account-row">
+                                                <input class="input-field text-right" id="manager-additional-bank-card-number" type="text" pattern="\d*" maxlength="16" placeholder=" شماره کارت خود را وارد نمایید">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-6">
+                                            <div class="form-account-title">آدرس ایمیل</div>
+                                            <div class="form-account-row">
+                                                <input class="input-field text-right" id="manager-additional-email" type="email" placeholder=" آدرس ایمیل خود را وارد نمایید">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 d-block" style="color: red" id="errors-box">
+
+                                    </div>
+                                    <div class="col-12 text-center">
+                                        <button class="btn btn-default btn-lg" onclick="updateManagerInfo()">ذخیره</button>
+                                        <a href="{% url 'manager_panel:managementPanel' %}"><button class="btn btn-default btn-lg">انصراف</button></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% include 'manager_panel/_management-panel-sidebar.html' %}
+            </div>
+        </div>
+    </main>
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="{% static 'js/additional-info.js' %}"></script>
+{% endblock %}

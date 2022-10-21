@@ -1,0 +1,112 @@
+{% extends 'store/_base.html' %}
+{% load static %}
+{% block title %}
+    <title>پنل مدیریت</title>
+{% endblock %}
+{% block css %}
+    {# CSS files... #}
+{% endblock %}
+
+
+{% block main %}
+    <main class="profile-user-page default" id="manager-panel-container" style="display: none">
+        <div class="container">
+            <div class="row">
+                <div class="profile-page col-xl-9 col-lg-8 col-md-12 order-2">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="col-12">
+                                <h1 class="title-tab-content">اطلاعات شخصی</h1>
+                            </div>
+                            <div class="content-section default" style="overflow: hidden">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p>
+                                            <span class="title">نام و نام خانوادگی :</span>
+                                            <span id="management-panel-name"></span>
+                                        </p>
+                                    </div>
+                                    <div class="col-12">
+                                        <p>
+                                            <span class="title">پست الکترونیک :</span>
+                                            <span id="management-panel-email"></span>
+                                        </p>
+                                    </div>
+                                    <div class="col-12">
+                                        <p>
+                                            <span class="title">شماره تلفن همراه:</span>
+                                            <span id="management-panel-phone"></span>
+                                        </p>
+                                    </div>
+                                    <div class="col-12">
+                                        <p>
+                                            <span class="title">کد ملی :</span>
+                                            <span id="management-panel-national-code"></span>
+                                        </p>
+                                    </div>
+                                    <div class="col-12">
+                                        <p>
+                                            <span class="title">شماره کارت :</span>
+                                            <span id="management-panel-bank-card-number"></span>
+                                        </p>
+                                    </div>
+                                    <div class="col-12 text-center">
+                                        <a href="{% url 'manager_panel:additionalInfo' %}" class="btn-link-border form-account-link">
+                                            ویرایش اطلاعات شخصی
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="col-12">
+                                <h1 class="title-tab-content">لیست آخرین سفارشات</h1>
+                                <div class="content-section default">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="profile-recent-fav-row">
+                                            <a href="#" class="profile-recent-fav-col profile-recent-fav-col-thumb">
+                                                <img src="{% static 'store/asset/image/homePage/cart/4560621.jpg' %}">
+                                            </a>
+                                            <div class="profile-recent-fav-col profile-recent-fav-col-title">
+                                                <a href="#">
+                                                    <h4 class="profile-recent-fav-name">
+                                                        گوشی موبایل اپل مدل iPhone XR دو سیم کارت ظرفیت 256 گیگابایت
+                                                    </h4>
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="profile-recent-fav-row">
+                                            <a href="#" class="profile-recent-fav-col profile-recent-fav-col-thumb">
+                                                <img src="{% static 'store/asset/image/homePage/cart/3794614.jpg' %}"></a>
+                                            <div class="profile-recent-fav-col profile-recent-fav-col-title">
+                                                <a href="#">
+                                                    <h4 class="profile-recent-fav-name">
+                                                        گوشی موبایل اپل مدل iPhone XR دو سیم کارت ظرفیت 256 گیگابایت
+                                                    </h4>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 text-center">
+                                        <a href="{% url 'manager_panel:allOrders' %}" class="btn-link-border form-account-link">
+                                            مشاهده و ویرایش لیست سفارشات
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% include 'manager_panel/_management-panel-sidebar.html' %}
+            </div>
+        </div>
+    </main>
+{% endblock %}
+
+
+{% block js %}
+    <!-- JS files... -->
+    <script type="text/javascript" src="{% static 'js/_manager-panel.js' %}"></script>
+{% endblock %}

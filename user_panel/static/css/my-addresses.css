@@ -1,0 +1,43 @@
+.address-textarea {
+    width: 100%;
+    outline: none;
+    border: 1px solid #c7c7c7;
+    resize: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+}
+.address-textarea:focus {
+    border: 1px solid grey;
+}
+.delete-address-icon {
+    position: absolute;
+    left: 15px;
+    top: 10px;
+    cursor: pointer;
+    color: red;
+    font-size: 18px;
+}
+.address-postal-code-input {
+    padding: 10px 15px;
+    border-radius: 5px;
+    outline: none;
+    border: 1px solid #c7c7c7;
+    width: 50%;
+}
+#my-addresses-container {
+    padding: 15px;
+}
+.delete-old-address-icon {
+    position: absolute;
+    left: 0;
+    top: 15px;
+    color: #a71d2a;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+@media (max-width: 576px) {
+    .address-postal-code-input {
+        width: 100%;
+    }
+}

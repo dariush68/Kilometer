@@ -1,0 +1,91 @@
+{% extends 'store/_base.html' %}
+{% load static %}
+{% block title %}
+    <title>حساب کاربری | سفارشات</title>
+{% endblock %}
+
+{% block css %}
+{% endblock %}
+
+{% block main %}
+    <main class="profile-user-page default">
+        <div class="container">
+            <div class="row">
+                <div class="profile-page col-xl-9 col-lg-8 col-md-12 order-2">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="col-12">
+                                <h1 class="title-tab-content">همه سفارش ها</h1>
+                            </div>
+                            <div class="content-section default">
+                                <div class="table-responsive">
+                                    <table class="table table-order">
+                                        <thead class="thead-light">
+                                          <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">شماره سفارش</th>
+                                            <th scope="col">تاریخ ثبت سفارش</th>
+                                            <th scope="col">مبلغ قابل پرداخت</th>
+                                            <th scope="col">مبلغ کل</th>
+                                            <th scope="col">عملیات پرداخت</th>
+                                            <th scope="col">جزئیات</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr>
+                                            <td>1</td>
+                                            <td class="order-code">DKC-59888888</td>
+                                            <td>30 خرداد 1398</td>
+                                            <td>0</td>
+                                            <td>98,500 تومان</td>
+                                            <td class="text-success">پرداخت موفق</td>
+                                            <td><i class="now-ui-icons arrows-1_minimal-left"></i></td>
+                                          </tr>
+                                          <tr>
+                                            <td scope="row">2</td>
+                                            <td class="order-code">DKC-59888888</td>
+                                            <td>30 خرداد 1398</td>
+                                            <td>0</td>
+                                            <td>98,500 تومان</td>
+                                            <td class="text-danger">پرداخت ناموفق</td>
+                                            <td><i class="now-ui-icons arrows-1_minimal-left"></i></td>
+                                          </tr>
+                                          <tr>
+                                            <td scope="row">3</td>
+                                            <td class="order-code">DKC-59888888</td>
+                                            <td>30 خرداد 1398</td>
+                                            <td>0</td>
+                                            <td>98,500 تومان</td>
+                                            <td class="text-danger">پرداخت ناموفق</td>
+                                            <td><i class="now-ui-icons arrows-1_minimal-left"></i></td>
+                                          </tr>
+                                          <tr>
+                                            <td scope="row">4</td>
+                                            <td class="order-code">DKC-59888888</td>
+                                            <td>30 خرداد 1398</td>
+                                            <td>0</td>
+                                            <td>98,500 تومان</td>
+                                            <td class="text-success">پرداخت موفق</td>
+                                            <td><i class="now-ui-icons arrows-1_minimal-left"></i></td>
+                                          </tr>
+                                          <tr>
+                                            <td scope="row">5</td>
+                                            <td class="order-code">DKC-59888888</td>
+                                            <td>30 خرداد 1398</td>
+                                            <td>0</td>
+                                            <td>98,500 تومان</td>
+                                            <td class="text-success">پرداخت موفق</td>
+                                            <td><i class="now-ui-icons arrows-1_minimal-left"></i></td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% include 'user_panel/_user-panel-sidebar.html' %}
+            </div>
+        </div>
+    </main>
+{% endblock %}

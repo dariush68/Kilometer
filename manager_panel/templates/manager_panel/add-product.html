@@ -1,0 +1,595 @@
+{% extends 'store/_base.html' %}
+{% load static %}
+{% block title %}
+    <title>پنل مدیریت | اضافه کردن کالا</title>
+{% endblock %}
+{% block css %}
+    {# CSS files... #}
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#42445A"/>
+
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#42445A"/>
+
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="#42445A"/>
+
+{#    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400&display=swap" rel="stylesheet">#}
+    <link rel="stylesheet" href="{% static 'css/add-product.css' %}">
+    <link rel="stylesheet" href="{% static 'js/color-picker/classic.min.css' %}">
+    <link rel="stylesheet" href="{% static 'js/color-picker/color-picker-styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/AdminLTE.css' %}">
+
+{% endblock %}
+
+
+{% block main %}
+    <main class="profile-user-page default">
+
+        <!-- main -->
+        <div class="container">
+            <div class="row">
+                <!-- body -->
+                <div class="profile-page col-xl-9 col-lg-8 col-md-12 order-2">
+                    <div class="row">
+                        <div class="col-lg-12">
+
+
+                            <!-- stepper -->
+                            <ul class="timeline" style="margin-top: 60px">
+
+                                <!-- timeline time label -->
+                                <li class="time-label">
+                                    <span class="bg-info text-white">
+                                        مراحل افزودن کالا
+                                    </span>
+                                </li>
+                                <!-- /.timeline-label -->
+
+                                <!-- generate item -->
+                                <li>
+                                    <!-- timeline icon -->
+                                    <i class="fa bg-gray border" style="font-family: 'IRANSansMobile(FaNum)'"><p>1</p></i>
+                                    <div class="timeline-item">
+                                        <span class="time d-none"><i class="fa fa-clock-o"></i> 12:05</span>
+
+                                        <h3 class="timeline-header font-weight-bold">تعریف کالا </h3>
+
+                                        <div class="timeline-body">
+                                            <!-- select categories -->
+                                            <div class="row mx-0 p-2">
+
+                                                <div class="thumbnail-image col-12 col-sm-6 col-md-4 col-xl-3 mb-4">
+                                                    <div class="avatar-edit">
+                                                        <input type='file' id="thumbnail-upload" onchange="getThumbnailImages(this)" accept=".png, .jpg, .jpeg" />
+                                                        <label for="thumbnail-upload">
+                                                            <i class="fa fa-pencil"></i>
+                                                        </label>
+                                                    </div>
+                                                    <div class="avatar-preview">
+                                                        <div id="thumbnail-preview" style="background-image: url({% static 'assets/images/camera.svg' %});">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-sm-6 col-md-8 col-xl-9 mb-4 row">
+                                                    <!-- select category -->
+                                                    <div class="col-12 col-md-12 my-3 my-md-0">
+                                                        <div>
+                                                            <i class="fa fa-list text-black-50"></i>
+                                                            <label for="select-category">دسته بندی اصلی را انتخاب کنید:</label>
+                                                            <div class="d-flex">
+                                                                <select class="custom-select" id="select-category">
+
+                                                                </select>
+                                                                <div class="mr-2 d-flex align-items-center">
+                                                                    <i class="fa fa-plus align-middle add-something" data-toggle="modal" data-target="#add-category-modal"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- select sub-category -->
+                                                    <div class="col-12 col-md-12 my-3 my-md-0">
+                                                        <div>
+                                                            <i class="fa fa-list text-black-50"></i>
+                                                            <label for="select-sub-category">دسته بندی فرعی را انتخاب کنید:</label>
+                                                            <div class="d-flex">
+                                                                <select class="custom-select" id="select-sub-category">
+
+                                                                </select>
+                                                                <div class="mr-2 d-flex align-items-center">
+                                                                    <i id="add-sub-cat" class="fa fa-plus align-middle add-something" style="pointer-events: none" data-toggle="modal"
+                                                                       data-target="#add-sub-category-modal" onclick="setCatName()"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- select sub-sub-category -->
+                                                    <div class="col-12 col-md-12 my-3 my-md-0">
+                                                        <div>
+                                                            <i class="fa fa-list text-black-50"></i>
+                                                            <label for="select-sub-sub-category">دسته بندی فرعی 2 را انتخاب کنید:</label>
+                                                            <div class="d-flex">
+                                                                <select class="custom-select" id="select-sub-sub-category">
+
+                                                                </select>
+                                                                <div class="mr-2 d-flex align-items-center">
+                                                                    <i id="add-sub-sub-cat" class="fa fa-plus align-middle add-something" style="pointer-events: none" data-toggle="modal"
+                                                                       data-target="#add-sub-sub-category-modal" onclick="setSubCatName()"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                <!-- select brand -->
+                                                <div class="col-12 col-md-6 my-3">
+                                                    <i class="fa fa-tag text-black-50"></i>
+                                                    <label for="brands">برند را انتخاب کنید:</label>
+                                                    <div class="d-flex">
+                                                        <select class="custom-select" id="brands">
+
+                                                        </select>
+                                                        <div class="mr-2 d-flex align-items-center">
+                                                            <i id="add-brand" class="fa fa-plus align-middle add-something" data-toggle="modal"
+                                                               data-target="#add-brand-modal"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- spacer -->
+                                                <div class="col-6"></div>
+                                                <!-- product title -->
+                                                <div class="col-6 col-md-6 my-3">
+                                                    <i class="fa fa-shopping-bag text-black-50"></i>
+                                                    <label for="product-name" class="mb-2">
+                                                        نام کالا را وارد کنید!
+                                                    </label>
+                                                    <input type="text" class="input-field-small text-right" placeholder="نام کالا" id="product-name">
+                                                </div>
+                                                <!-- product id -->
+                                                <div class="col-6 col-md-6 my-3">
+                                                    <i class="fa fa-shopping-bag text-black-50"></i>
+                                                    <label for="product-name" class="mb-2">
+                                                        شماره کالا را وارد کنید!
+                                                    </label>
+                                                    <input type="text" class="input-field-small text-right" placeholder="شماره کالا" id="product-id">
+                                                </div>
+                                                <!-- description -->
+                                                <div class="col-12 mt-4">
+                                                    <i class="fa fa-file-text text-black-50"></i>
+                                                    <strong>نقد و بررسی (اختیاری)</strong>
+                                                    <div id="toolbar-container" class="mt-2"></div>
+                                                    <!-- This container will become the editable. -->
+                                                    <div id="editor" class="editor">
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="timeline-footer">
+                                            <a class="btn btn-primary btn-xs text-white" onclick="document.getElementById()">تایید</a>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <!-- feature item -->
+                                <li>
+                                    <!-- timeline icon -->
+                                    <i class="fa bg-gray border" style="font-family: 'IRANSansMobile(FaNum)'"><p>2</p></i>
+                                    <div class="timeline-item">
+                                        <span class="time d-none"><i class="fa fa-clock-o"></i> 12:05</span>
+
+                                        <h3 class="timeline-header font-weight-bold">افزودن ویژگی کالا</h3>
+
+                                        <div class="timeline-body">
+                                            <div class="col-12">
+                                                <div class="row mx-0" id="feature-category-box">
+                                                    <div class="row mx-0 w-100 border rounded py-3 my-2" id="feature-category-0">
+                                                        <div class="col-12 col-md-6">
+                                                            <label for="feature-category-title-0">نام دسته‌ی ویژگی</label>
+                                                            <input type="text" class="input-field-small text-right" id="feature-category-title-0" placeholder="دسته‌ی ویژگی">
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <div class="row" id="product-feature-box-0">
+                                                                <div class="row my-2 w-100 mx-0" id="product-feature-0-0">
+                                                                    <div class="col-12 mt-2 mt-md-0 col-md-6">
+                                                                        <label for="feature-key-0-0">نام ویژگی</label>
+                                                                        <input type="text" class="input-field-small text-right" placeholder="نام ویژگی" id="feature-key-0-0">
+                                                                    </div>
+                                                                    <div class="col-12 mt-2 mt-md-0 col-md-6">
+                                                                        <label for="feature-value-0-0">مقدار ویژگی</label>
+                                                                        <input type="text" class="input-field-small text-right" placeholder="مقدار ویژگی" id="feature-value-0-0">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="d-flex row mx-0 mt-2">
+                                                                <button class="btn btn-sm btn-info mr-auto" id="add-feature-btn" onclick="addProductFeature($(this).parent().parent())">
+                                                                    اضافه کردن ویژگی
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex mt-4">
+                                                    <button class="btn btn-info mr-auto" onclick="addProductFeatureCategory()">اضافه کردن دسته‌ی ویژگی</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <!-- tags item -->
+                                <li>
+                                    <!-- timeline icon -->
+                                    <i class="fa bg-gray border" style="font-family: 'IRANSansMobile(FaNum)'"><p>4</p></i>
+                                    <div class="timeline-item">
+                                        <span class="time d-none"><i class="fa fa-clock-o"></i> 12:05</span>
+
+                                        <h3 class="timeline-header font-weight-bold">تگ های محصول</h3>
+
+                                        <div class="timeline-body">
+{#                                            <div class="content-section default">#}
+                                                <div style="position: relative; min-width: 300px">
+                                                    <i class="fa fa-plus"  data-toggle="modal" data-target="#add-tag-modal-ware"
+                                                       style="position: absolute; left: 3px; top: 2px; font-size: 18px; color: green; cursor: pointer"></i>
+                                                    <div id="ware-tag-container">
+
+                                                    </div>
+                                                </div>
+{#                                            </div>#}
+
+                                        </div>
+
+                                        <div class="timeline-footer">
+{#                                            <a class="btn btn-primary btn-xs text-white">تایید</a>#}
+                                            <input type="text" type="search">
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <!-- confirm item -->
+                                <li>
+                                    <!-- timeline icon -->
+                                    <i class="fa bg-gray border" style="font-family: 'IRANSansMobile(FaNum)'"><p>5</p></i>
+                                    <div class="timeline-item">
+                                        <a class="btn btn-primary btn-xs text-white">ایجاد محصول </a>
+                                    </div>
+                                </li>
+
+                                <!-- color item -->
+                                <li>
+                                    <!-- timeline icon -->
+                                    <i class="fa bg-gray border" style="font-family: 'IRANSansMobile(FaNum)'"><p>5</p></i>
+                                    <div class="timeline-item">
+                                        <span class="time d-none"><i class="fa fa-clock-o"></i> 12:05</span>
+
+                                        <h3 class="timeline-header font-weight-bold">رنگ بندی و قیمت محصول</h3>
+
+                                        <div class="timeline-body">
+                                            <div class="content-section default">
+                                                <div style="display: none" id="color-upload-part-label">
+                                                    <h6>رنگ بندی و قیمت محصول</h6>
+                                                    <strong style="color: #1da2ff;">متناسب با رنگ محصول، قیمت و موجودی آن را وارد کنید</strong>
+                                                    <br>
+                                                    <strong style="color: red; display: none" id="color-select-error">لطفا همه موارد زیر را انتخاب کنید! (اعم از قیمت، موجودی و رنگ برای هر بخش)</strong>
+                                                    <strong style="color: red; display: none" id="same-color-error">رنگ های انتخابی میبایست متفاوت باشند!</strong>
+
+                                                    <div class="col-12 mt-4" style="display: none;" id="color-upload-part">
+                                                        <div class="row mx-0 d-flex justify-content-start" id="colors-box">
+                                                            <div id="color-price-box-0" class="col-12 col-sm-6 col-md-4 col-xl-3 mb-4">
+                                                                <div class="ml-2 z-depth-2 colo-price-box">
+                                                                    <input class="input-field-small mt-4" id="price-0" type="number" placeholder="قیمت">
+                                                                    <input class="input-field-small mt-2" id="stock-0" type="number" placeholder="موجودی">
+                                                                    <div>
+                                                                        <div class="d-flex justify-content-between align-items-center">
+                                                                            <label class="mt-3" for="select-color-0">انتخاب رنگ:</label>
+                                                                            <i class="fa fa-plus align-middle" data-toggle="modal" data-target="#add-color-modal" style="color: green; cursor: pointer; font-size: 18px"></i>
+                                                                        </div>
+                                                                        <div class="d-flex">
+                                                                            <div class="colors-box d-flex justify-content-start w-100 mx-0"
+                                                                                 style="flex-wrap: wrap; max-height: 90px; overflow-y: auto" id="select-color-box-0">
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="checkbox mt-2">
+                                                                        <input id="default-0" type="checkbox">
+                                                                        <label for="default-0">
+                                                                            قیمت پایه (اصلی)
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                                <button class="btn btn-sm btn-warning w-75 d-flex mx-auto justify-content-center"
+                                                                        onclick="postPrice(0)"
+                                                                        id="post-price-0-btn"
+                                                                >
+                                                                    ثبت قیمت
+                                                                </button>
+                                                                <div id="price-0-added" style="display: none; border-radius: 5px" class="alert alert-success w-100 text-center justify-content-center my-1">قیمت با موفقیت ثبت شد</div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="d-flex">
+                                                            <button class="btn btn-sm btn-info mr-auto mt-3" onclick="addProductColor()">اضافه کردن رنگ</button>
+                                                        </div>
+                                                        <hr class="w-100 my-4">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="timeline-footer">
+                                            <a class="btn btn-primary btn-xs text-white">تایید</a>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <!-- gallery item -->
+                                <li>
+                                    <!-- timeline icon -->
+                                    <i class="fa bg-gray border" style="font-family: 'IRANSansMobile(FaNum)'"><p>6</p></i>
+                                    <div class="timeline-item">
+                                        <span class="time d-none"><i class="fa fa-clock-o"></i> 12:05</span>
+
+                                        <h3 class="timeline-header font-weight-bold">گالری تصاویر</h3>
+
+                                        <div class="timeline-body">
+                                            <div class="content-section default">
+                                                <div style="display: none" id="image-upload-part-label" class="mt-5">
+                                                    <h6>گالری تصاویر</h6>
+                                                    {#                                        <strong style="color: #1da2ff;">نکته: عکس اولی که انتخاب میکنید به عنوان عکس اصلی محصول محسوب میشود!</strong>#}
+                                                </div>
+
+                                                <div class="col-12 mt-4" style="display: none" id="image-upload-part">
+                                                    <div class="row mx-0 d-flex justify-content-start" id="images-box">
+                                                        <div class="avatar-upload col-12 col-sm-6 col-md-4 col-xl-3 mb-4">
+                                                            <div class="avatar-edit">
+                                                                <input type='file' id="image-upload-0" onchange="getProductImages(this, this.id)" accept=".png, .jpg, .jpeg" />
+                                                                <label for="image-upload-0">
+                                                                    <i class="fa fa-pencil"></i>
+                                                                </label>
+                                                            </div>
+                                                            <div class="avatar-preview">
+                                                                <div id="image-preview-0" style="background-image: url({% static 'assets/images/camera.svg' %});">
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="d-flex align-items-center mt-3">
+                                                                <label for="image-order-0">ترتیب عکس: </label>
+                                                                <input id="image-order-0" type="number" class="input-field-small image-order-field">
+                                                            </div>
+                                                            <button class="btn btn-sm btn-warning w-75 d-flex mx-auto justify-content-center"
+                                                                    onclick="postPicture(0)"
+                                                                    id="post-picture-0-btn"
+                                                            >
+                                                                ثبت تصویر
+                                                            </button>
+                                                            <div id="picture-0-added" style="display: none; border-radius: 5px" class="alert alert-success w-100 text-center justify-content-center my-1">تصویر با موفقیت ثبت شد</div>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex">
+                                                        <button class="btn btn-sm btn-info mr-auto mt-3" onclick="addProductImage()">اضافه کردن عکس</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="timeline-footer">
+                                            <a class="btn btn-primary btn-xs text-white">تایید</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <!-- END timeline item -->
+
+                            </ul>
+
+                            <!-- win -->
+                            <div class="content-section default">
+
+                                <div class="row mx-0 my-4">
+                                    <div class="mb-4" id="ware-error-response" style="color: red; display: none">
+
+                                    </div>
+                                    <div class="d-flex justify-content-center w-100 mb-5">
+                                        <button class="btn btn-info" style="width: 200px" id="post-ware-btn">ثبت و ادامه</button>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+                <!-- sidebar -->
+                {% include 'manager_panel/_management-panel-sidebar.html' %}
+            </div>
+        </div>
+
+        <!-- add category modal -->
+        <div class="modal fade" id="add-category-modal" tabindex="-1" role="dialog" aria-labelledby="add-category-modal-label" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title" id="add-category-modal-label">اضافه کردن دسته بندی:</h6>
+                    </div>
+                    <div class="modal-body">
+                        <div id="add-category-box">
+                            <label for="category-title"></label>
+                            <input type="text" placeholder="نام دسته بندی" class="input-field text-right" id="category-title">
+                            <input type="text" placeholder="نام انگلیسی دسته بندی (جهت نمایش در URL)" class="input-field text-right mt-4" id="category-en-title">
+                            <label for="category-image" class="mt-3">عکس دسته بندی:</label>
+                            <input type="file" class="form-control-file" id="category-image">
+                            <input type="text" placeholder="متن جایگذین تصویر" class="input-field text-right mt-4" id="category-img-alt">
+                            <label for="category-description" class="mt-3">توضیحات دسته:</label>
+                            <textarea placeholder="توضیحات مربوط به دسته را وارد کنید" id="category-description" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-end">
+                        <button type="button" class="btn btn-secondary ml-1 btn-sm" style="width: 92px" data-dismiss="modal">لغو</button>
+                        <button type="button" class="btn btn-info mr-1 btn-sm" style="width: 92px" onclick="addCategory()">تایید</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- add sub-category modal -->
+        <div class="modal fade" id="add-sub-category-modal" tabindex="-1" role="dialog" aria-labelledby="add-sub-category-modal-label" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title" id="add-sub-category-modal-label">اضافه کردن دسته بندی فرعی:</h6>
+                    </div>
+                    <div class="modal-body">
+                        <div id="add-sub-category-box">
+                            <strong>
+                                این دسته، در دسته اصلی
+                                <strong id="category-selected-modal-title" style="color: #0fafdd"></strong>
+                                اضافه میشود
+                            </strong>
+                            <label for="sub-category-title"></label>
+                            <input type="text" placeholder="نام دسته بندی فرعی" class="input-field text-right" id="sub-category-title">
+                            <input type="text" placeholder="نام انگلیسی دسته بندی فرعی (جهت نمایش در URL)" class="input-field text-right mt-4" id="sub-category-en-title">
+                            <label for="sub-category-image" class="mt-3">عکس دسته بندی:</label>
+                            <input type="file" class="form-control-file" id="sub-category-image">
+                            <label for="sub-category-description" class="mt-3">توضیحات دسته:</label>
+                            <textarea placeholder="توضیحات دسته" id="sub-category-description" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-end">
+                        <button type="button" class="btn btn-secondary ml-1 btn-sm" style="width: 92px" data-dismiss="modal">لغو</button>
+                        <button type="button" class="btn btn-info mr-1 btn-sm" style="width: 92px" onclick="addSubCat()">تایید</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- add sub-sub-category modal -->
+        <div class="modal fade" id="add-sub-sub-category-modal" tabindex="-1" role="dialog" aria-labelledby="add-sub-sub-category-modal-label" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title" id="add-sub-sub-category-modal-label">اضافه کردن دسته بندی فرعی:</h6>
+                    </div>
+                    <div class="modal-body">
+                        <div id="add-sub-sub-category-box">
+                            <strong>
+                                این دسته، در دسته فرعی
+                                <strong id="sub-category-selected-modal-title" style="color: #0fafdd"></strong>
+                                اضافه میشود
+                            </strong>
+                            <label for="sub-sub-category-title"></label>
+                            <input type="text" placeholder="نام دسته بندی فرعی" class="input-field text-right" id="sub-sub-category-title">
+                            <input type="text" placeholder="نام انگلیسی دسته بندی فرعی (جهت نمایش در URL)" class="input-field text-right mt-4" id="sub-sub-category-en-title">
+                            <label for="sub-sub-category-image" class="mt-3">عکس دسته بندی:</label>
+                            <input type="file" class="form-control-file" id="sub-sub-category-image">
+                            <label for="sub-sub-category-description" class="mt-3">توضیحات دسته:</label>
+                            <textarea placeholder="توضیحات دسته" id="sub-sub-category-description" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-end">
+                        <button type="button" class="btn btn-secondary ml-1 btn-sm" style="width: 92px" data-dismiss="modal">لغو</button>
+                        <button type="button" class="btn btn-info mr-1 btn-sm" style="width: 92px" onclick="addSubSubCat()">تایید</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- add brand modal -->
+        <div class="modal fade" id="add-brand-modal" tabindex="-1" role="dialog" aria-labelledby="add-brand-modal-label" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title" id="add-brand-modal-label">اضافه کردن برند:</h6>
+                    </div>
+                    <div class="modal-body">
+                        <div id="add-sub-category-box">
+                            <label for="brand-title"></label>
+                            <input type="text" placeholder="نام برند" class="input-field text-right" id="brand-title">
+                            <label for="brand-image" class="mt-3">عکس برند:</label>
+                            <input type="file" class="form-control-file" id="brand-image">
+                            <label for="brand-description" class="mt-3">توضیحات برند:</label>
+                            <textarea placeholder="توضیحات دسته" id="brand-description" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-end">
+                        <button type="button" class="btn btn-secondary ml-1 btn-sm" style="width: 92px" data-dismiss="modal">لغو</button>
+                        <button type="button" class="btn btn-info mr-1 btn-sm" style="width: 92px" onclick="addProductBrand()">تایید</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- add color modal -->
+        <div class="modal fade" id="add-color-modal" tabindex="-1" role="dialog" aria-labelledby="add-modal-modal-label" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title" id="add-modal-modal-label">اضافه کردن رنگ:</h6>
+                    </div>
+                    <div class="modal-body">
+                        <div id="add-category-box">
+                            <input type="text" placeholder="نام رنگ" class="input-field text-right mb-4" id="color-title">
+                            <div class="d-block justify-content-start">
+                                <span>انتخاب رنگ</span>
+                                <div class="theme-container"></div>
+                                <div class="mr-3 mt-3 pickr-container"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-end">
+                        <button type="button" class="btn btn-secondary ml-1 btn-sm" style="width: 92px" data-dismiss="modal">لغو</button>
+                        <button type="button" class="btn btn-info mr-1 btn-sm" style="width: 92px" onclick="addColor()">تایید</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- add tag modal -->
+        <div class="modal fade" id="add-tag-modal-ware" tabindex="-1" role="dialog" aria-labelledby="add-tag-modal-label" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h6 class="modal-title" id="add-tag-modal-label">اضافه کردن تگ:</h6>
+                    </div>
+                    <div class="modal-body">
+                        <div id="add-tag-box">
+                            <input type="text" class="input-field-small" id="add-tag-fa-name-ware" placeholder="نام فارسی" />
+                            <input type="text" class="input-field-small mt-4" id="add-tag-en-name-ware" placeholder="نام انگلیسی (جهت نمایش در URL)" />
+                        </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-end">
+                        <button type="button" class="btn btn-secondary ml-1 btn-sm" style="width: 92px" data-dismiss="modal">لغو</button>
+                        <button type="button" class="btn btn-info mr-1 btn-sm" style="width: 92px" onclick="addTag()">تایید</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <input type="hidden" id="camera-icon-url" url="{% static 'assets/images/camera.svg' %}">
+{% endblock %}
+
+
+
+{% block js %}
+    {# JS files... #}
+    <script type="text/javascript" src="{% static 'js/color-picker/pickr.es5.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/color-picker/color-picker-scripts.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/ckeditor/ckeditor.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/add-product.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/adminlte.min.js' %}"></script>
+    <script>
+        const setCatName = () => {
+            let catName = $("#select-category option:selected").html()
+            $("#sub-").text(catName)
+        }
+        const setSubCatName = () => {
+            let catName = $("#select-sub-category option:selected").html()
+            $("#sub-category-selected-modal").text(catName)
+        }
+    </script>
+    <script>
+
+    </script>
+
+{% endblock %}

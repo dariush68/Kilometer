@@ -1,0 +1,332 @@
+{% load static %}
+<div class="profile-page-aside col-xl-3 col-lg-4 col-md-6 center-section order-1">
+    <div class="profile-box">
+        <div class="profile-box-header">
+            <div class="profile-box-avatar">
+                <img src="{% static 'store/asset/image/homePage/svg/user.svg' %}" alt="">
+            </div>
+            <button data-toggle="modal" data-target="#myModal" class="profile-box-btn-edit">
+                <i class="fa fa-pencil"></i>
+            </button>
+            <!-- Modal Core -->
+            <div class="modal-share modal-width-custom modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="myModalLabel">تغییر نمایه کاربری شما</h4>
+                        </div>
+                        <div class="modal-body">
+                            <ul class="profile-avatars default text-center">
+                                <li>
+                                    <img class="profile-avatars-item" src="{% static 'store/asset/image/homePage/svg/user.svg' %}">
+                                </li>
+                                <li>
+                                    <img class="profile-avatars-item" src="{% static 'store/asset/image/homePage/svg/avatar-1.svg' %}">
+                                </li>
+                                <li>
+                                    <img class="profile-avatars-item" src="{% static 'store/asset/image/homePage/svg/avatar-2.svg' %}">
+                                </li>
+                                <li>
+                                    <img class="profile-avatars-item" src="{% static 'store/asset/image/homePage/svg/avatar-3.svg' %}">
+                                </li>
+                                <li>
+                                    <img class="profile-avatars-item" src="{% static 'store/asset/image/homePage/svg/avatar-4.svg' %}">
+                                </li>
+                                <li>
+                                    <img class="profile-avatars-item" src="{% static 'store/asset/image/homePage/svg/avatar-5.svg' %}">
+                                </li>
+                                <li>
+                                    <img class="profile-avatars-item" src="{% static 'store/asset/image/homePage/svg/avatar-6.svg' %}">
+                                </li>
+                                <li>
+                                    <img class="profile-avatars-item" src="{% static 'store/asset/image/homePage/svg/avatar-7.svg' %}">
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal Core -->
+        </div>
+        <div class="profile-box-username" id="sidebar-manager-name"></div>
+        <div class="profile-box-tabs">
+            <a href="{% url 'user_panel:passwordChange' %}" class="profile-box-tab profile-box-tab-access">
+                <i class="now-ui-icons ui-1_lock-circle-open"></i>
+                تغییر رمز
+            </a>
+            <a onclick="logout()" href="/" class="profile-box-tab profile-box-tab--sign-out">
+                <i class="now-ui-icons media-1_button-power"></i>
+                خروج از حساب
+            </a>
+        </div>
+    </div>
+    <div class="responsive-profile-menu show-md">
+        <div class="btn-group">
+            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-navicon"></i>
+                حساب کاربری شما
+            </button>
+            <div class="dropdown-menu dropdown-menu-right text-right">
+                <a href="{% url 'manager_panel:managementPanel' %}" class="dropdown-item" id="sidebar-profile-mobile">
+                    <i class="now-ui-icons users_single-02"></i>
+                    پروفایل
+                </a>
+                <a href="{% url 'manager_panel:allOrders' %}" class="dropdown-item" id="sidebar-order-list-mobile">
+                    <i class="now-ui-icons shopping_basket"></i>
+                    لیست سفارشات
+                </a>
+                <a href="{% url 'manager_panel:returnedOrders' %}" class="dropdown-item" id="sidebar-returned-order-list-mobile">
+                    <i class="now-ui-icons files_single-copy-04"></i>
+                    درخواست های مرجوعی
+                </a>
+                <a href="{% url 'manager_panel:favoriteProducts' %}" class="dropdown-item" id="sidebar-favorite-product-list-mobile">
+                    <i class="now-ui-icons ui-2_favourite-28"></i>
+                    کالاهای محبوب
+                </a>
+                <a href="{% url 'manager_panel:addProductCategory' %}" class="dropdown-item" id="sidebar-add-product-category-mobile">
+                    <i class="now-ui-icons text_align-center"></i>
+                    اضافه کردن دسته بندی کالا
+                </a>
+                <a href="{% url 'manager_panel:addBrand' %}" class="dropdown-item" id="sidebar-add-brand-mobile">
+                    <i class="now-ui-icons text_align-center"></i>
+                    اضافه کردن برند
+                </a>
+                <a href="{% url 'manager_panel:addColor' %}" class="dropdown-item" id="sidebar-add-color-mobile">
+                    <i class="now-ui-icons text_align-center"></i>
+                    اضافه کردن رنگ
+                </a>
+                <a href="{% url 'manager_panel:addTag' %}" class="dropdown-item" id="sidebar-add-tag-mobile">
+                    <i class="now-ui-icons ui-1_simple-add"></i>
+                    اضافه کردن تگ
+                </a>
+                <a href="{% url 'manager_panel:productsList' %}" class="dropdown-item" id="sidebar-products-list-mobile">
+                    <i class="now-ui-icons ui-1_simple-add"></i>
+                    مشاهده لیست کالا ها
+                </a>
+                <a href="{% url 'manager_panel:addProduct' %}" class="dropdown-item" id="sidebar-add-product-mobile">
+                    <i class="now-ui-icons ui-1_simple-add"></i>
+                    اضافه کردن کالا
+                </a>
+                <a href="{% url 'manager_panel:addSlideshow' %}" class="dropdown-item" id="sidebar-add-slideshow-mobile">
+                    <i class="now-ui-icons ui-1_simple-add"></i>
+                    اضافه کردن اسلایدشو
+                </a>
+                <a href="{% url 'manager_panel:usersList' %}" class="dropdown-item" id="sidebar-users-list-mobile">
+                    <i class="now-ui-icons users_circle-08"></i>
+                    مدیریت کاربران
+                </a>
+                <a href="{% url 'manager_panel:personalInfo' %}" class="dropdown-item" id="sidebar-personal-info-mobile">
+                    <i class="now-ui-icons business_badge"></i>
+                    اطلاعات شخصی
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="profile-menu hidden-md">
+        <div class="profile-menu-header">داشبورد</div>
+        <ul class="profile-menu-items">
+            <li>
+                <a href="{% url 'manager_panel:managementPanel' %}" id="sidebar-profile">
+                    <i class="now-ui-icons users_single-02"></i>
+                    پروفایل
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'manager_panel:allOrders' %}" id="sidebar-order-list">
+                    <i class="now-ui-icons shopping_basket"></i>
+                    لیست سفارشات
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'manager_panel:returnedOrders' %}" id="sidebar-returned-order-list">
+                    <i class="now-ui-icons files_single-copy-04"></i>
+                    درخواست های مرجوعی
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'manager_panel:favoriteProducts' %}" id="sidebar-favorite-product-list" >
+                    <i class="now-ui-icons ui-2_favourite-28"></i>
+                    کالاهای محبوب
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'manager_panel:addProductCategory' %}" id="sidebar-add-product-category">
+                    <i class="now-ui-icons text_align-center"></i>
+                    اضافه کردن دسته بندی کالا
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'manager_panel:addBrand' %}" id="sidebar-add-brand">
+                    <i class="now-ui-icons text_align-center"></i>
+                    اضافه کردن برند
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'manager_panel:addColor' %}" id="sidebar-add-color">
+                    <i class="now-ui-icons text_align-center"></i>
+                    اضافه کردن رنگ
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'manager_panel:addTag' %}" id="sidebar-add-tag">
+                    <i class="now-ui-icons ui-1_simple-add"></i>
+                    اضافه کردن تگ
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'manager_panel:productsList' %}" id="sidebar-products-list">
+                    <i class="now-ui-icons ui-1_simple-add"></i>
+                    مشاهده لیست کالا ها
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'manager_panel:addProduct' %}" id="sidebar-add-product">
+                    <i class="now-ui-icons ui-1_simple-add"></i>
+                    اضافه کردن کالا
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'manager_panel:addSlideshow' %}" id="sidebar-add-slideshow">
+                    <i class="now-ui-icons ui-1_simple-add"></i>
+                    اضافه کردن اسلایدشو
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'manager_panel:usersList' %}" id="sidebar-users-list">
+                    <i class="now-ui-icons users_circle-08"></i>
+                    مدیریت کاربران
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'manager_panel:personalInfo' %}" id="sidebar-personal-info">
+                    <i class="now-ui-icons business_badge"></i>
+                    اطلاعات شخصی
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<script src="{% static 'store/vendor/js/core/jquery.3.2.1.min.js' %}"></script>
+<script src="{% static 'store/vendor/js/core/axios.min.js' %}"></script>
+{#<script>#}
+{#    let config = {#}
+{#        headers: {#}
+{#            Authorization: `Bearer ${localStorage.getItem('accessToken')}`#}
+{#        },#}
+{#    }#}
+{#    axios.get('/api/user/info', config)#}
+{#        .then(response => {#}
+{#            let userInfo = response.data;#}
+{#            $("#user-name").text(userInfo['first_name'] + ' ' + userInfo['last_name'])#}
+{#        })#}
+{#        .catch(error => {#}
+{#            console.log(error.response)#}
+{#        })#}
+{#</script>#}
+{##}
+<script>
+    const logout = () => {
+        localStorage.setItem('accessToken' , '')
+    }
+</script>
+<script>
+    let pageURL = window.location.href.split('/')
+    switch (pageURL[pageURL.length - 2]) {
+        case 'management-panel':
+            $("#sidebar-profile").addClass('active')
+            $("#sidebar-profile-mobile").addClass('active-menu')
+            break
+        case 'all-orders':
+            $("#sidebar-order-list").addClass('active')
+            $("#sidebar-order-list-mobile").addClass('active-menu')
+            break
+        case 'returned-orders':
+            $("#sidebar-returned-order-list").addClass('active')
+            $("#sidebar-returned-order-list-mobile").addClass('active-menu')
+            break
+        case 'favorite-products':
+            $("#sidebar-favorite-product-list").addClass('active')
+            $("#sidebar-favorite-product-list-mobile").addClass('active-menu')
+            break
+        case 'add-product-category':
+            $("#sidebar-add-product-category").addClass('active')
+            $("#sidebar-add-product-category-mobile").addClass('active-menu')
+            break
+        case 'add-brand':
+            $("#sidebar-add-brand").addClass('active')
+            $("#sidebar-add-brand-mobile").addClass('active-menu')
+            break
+        case 'add-color':
+            $("#sidebar-add-color").addClass('active')
+            $("#sidebar-add-color-mobile").addClass('active-menu')
+            break
+        case 'add-tag':
+            $("#sidebar-add-tag").addClass('active')
+            $("#sidebar-add-tag-mobile").addClass('active-menu')
+            break
+        case 'add-product':
+            $("#sidebar-add-product").addClass('active')
+            $("#sidebar-add-product-mobile").addClass('active-menu')
+            break
+        case 'add-slideshow':
+            $("#sidebar-add-slideshow").addClass('active')
+            $("#sidebar-add-slideshow-mobile").addClass('active-menu')
+            break
+        case 'products-list':
+            $("#sidebar-products-list").addClass('active')
+            $("#sidebar-products-list-mobile").addClass('active-menu')
+            break
+        case 'users-list':
+            $("#sidebar-users-list").addClass('active')
+            $("#sidebar-users-list-mobile").addClass('active-menu')
+            break
+        case 'personal-info':
+            $("#sidebar-personal-info").addClass('active')
+            $("#sidebar-personal-info-mobile").addClass('active-menu')
+            break
+    }
+</script>
+<script>
+    let config = {
+        headers: {
+            Authorization: 'Bearer ' + localStorage.getItem('accessToken')
+        }
+    }
+    axios.get('/api/manager/info', config)
+        .then(response => {
+            let managerInfo = response.data
+            $("#sidebar-manager-name").text(managerInfo['name'])
+        })
+        .catch(error => {
+            console.log(error)
+        })
+</script>
+<script>
+// Manager Access
+const managerAccess = async () => {
+    const token = localStorage.getItem('accessToken')
+    if (token === '') {
+        localStorage.setItem('thisPageURL', window.location.href)
+        window.location.href = '/profile/login/'
+    } else {
+        let managerConfig = {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            },
+        }
+        axios.get('/api/user/isAdmin', managerConfig)
+        .then(res => {
+            if (!res.data['isManager']) {
+                alert('دسترسی غیر مجاز')
+                localStorage.setItem('thisPageURL', window.location.href)
+                window.location.href = '/'
+            } else {
+                $("#manager-panel-container").css('display', 'unset')
+            }
+        })
+    }
+}
+managerAccess()
+</script>

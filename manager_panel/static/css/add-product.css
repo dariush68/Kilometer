@@ -1,0 +1,177 @@
+#select-category, #select-sub-category, #select-sub-sub-category, #brands, #select-category-modal, .select-color {
+    padding: 3px 25px;
+    border-radius: 5px;
+    border-color: lightgray;
+    font-size: 12px;
+}
+#add-product-btn {
+    width: 100% !important;
+}
+@media (min-width: 768px) {
+    #add-product-btn {
+        width: 300px !important;
+    }
+}
+.checkbox label,
+.radio label {
+    padding-right: 35px;
+    padding-left: 0;
+}
+.checkbox label::before,
+.checkbox label::after {
+    right: 0;
+    left: auto;
+}
+.add-something{
+    color: green;
+    font-size: 18px;
+    cursor: pointer
+}
+#add-category-box, #add-sub-category-box, #add-sub-sub-category-box{
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+}
+textarea {
+    border-radius: 5px;
+    border-color: lightgray;
+    padding: 5px 10px;
+    resize: none;
+}
+textarea:focus{
+    outline: none;
+}
+
+.editor {
+    border: 1px solid lightgrey!important;
+    border-radius: 0 0 3px 3px!important;
+    border-top: 0!important;
+    min-height: 250px;
+    text-align: right;
+    direction: rtl;
+}
+
+
+.avatar-upload {
+    position: relative;
+    min-height: 250px;
+    max-height: 250px;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+}
+.thumbnail-image {
+    position: relative;
+    min-height: 200px;
+    max-height: 200px;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+}
+.avatar-edit {
+    position: absolute;
+    right: 10%;
+    z-index: 1;
+    top: 7px;
+}
+.image-order-field::-webkit-outer-spin-button,
+.image-order-field::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.image-order-field {
+    -moz-appearance: textfield;
+    width: 70px;
+    text-align: center;
+    margin-right: 15px;
+}
+.avatar-edit > input {
+    display: none;
+}
+.avatar-edit > label {
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    margin-bottom: 0;
+    border-radius: 100%;
+    background: #FFFFFF;
+    border: 1px solid transparent;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.12);
+    cursor: pointer;
+    font-weight: normal;
+    transition: all .2s ease-in-out;
+}
+.avatar-edit > label:hover {
+    background: #f1f1f1;
+    border-color: #d6d6d6;
+}
+.avatar-edit > label > i {
+    color: #757575;
+    font-size: 15px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.avatar-preview {
+    width: 100%;
+    height: 100%;
+    max-width: 200px;
+    border-radius: 10px;
+    border: 6px solid #F8F8F8;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+}
+.avatar-preview > div {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.colo-price-box{
+    border-radius: 8px;
+    padding: 10px 15px;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    min-height: 190px;
+    margin-bottom: 15px;
+}
+
+.z-depth-2 {
+    -webkit-box-shadow: 0 8px 17px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19) !important;
+    box-shadow: 0 8px 17px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19) !important;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.tag-box {
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    max-width: 250px;
+    padding: 30px 15px;
+    position: relative;
+}
+#ware-tag-container {
+    background: whitesmoke;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    padding: 5px 15px;
+    margin: 25px 0;
+    max-height: 250px;
+    overflow: auto;
+}

@@ -1,0 +1,532 @@
+{% extends 'store/_base.html' %}
+{% load static %}
+{% block title %}
+    <title>پنل مدیریت | اضافه کردن دسته بندی</title>
+{% endblock %}
+{% block css %}
+    {# CSS files... #}
+    <link rel="stylesheet" href="{% static 'css/add-product-category.css' %}">
+{% endblock %}
+
+
+{% block main %}
+    <main class="profile-user-page default">
+        <div class="container">
+            <div class="row">
+                <div class="profile-page col-xl-9 col-lg-8 col-md-12 order-2">
+                    <div class="col-12">
+                        <h1 class="title-tab-content">اضافه کردن دسته بندی کالا</h1>
+                    </div>
+
+                    <!-- category -->
+                    <div class="card">
+                        <div class="card-header bg-default">
+
+                            <span class="text-white font-weight-bold">
+                                دسته بندی اصلی</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <!-- list category -->
+                                <div class="col-6">
+                                    <!-- serach -->
+                                    <div class="ml-2 mb-3">
+                                        <input id="search-category" class="form-control mr-sm-2" type="search" placeholder="جست وجو" aria-label="Search">
+                                    </div>
+
+                                    <!-- table -->
+                                    <div class="table-responsive">
+                                        <table class="table table-order table-sm table-hover">
+                                            <thead class="thead-light">
+                                            <tr>
+                                                <th scope="col" style="width: 15%">ردیف</th>
+                                                <th scope="col" style="width: 65%">نام دسته بندی</th>
+                                                <th scope="col" style="width: 20%">حذف</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody id="category-tbody" class="table-body">
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <!-- edit/add category section -->
+                                <div class="col-6">
+                                    <div class="border p-2">
+                                        <form id="form-add-category-apc1">
+                                            <input type="hidden" id="category-id">
+
+                                            <!--image file upoad sample-->
+                                            <div class="form-group col-md-12">
+                                                <div class="box text-center">
+                                                    <!-- fileuploader view component -->
+                                                    <div class="text-center">
+                                                        <div class="margin-bottom-20">
+                                                            <img id="img-category-selected" class="thumbnail box-center margin-top-20 img-thumbnail" alt="No image"
+                                                                 src="{% static 'assets/images/camera.svg' %}" style="width: 400px; height: 200px; object-fit: contain">
+                                                        </div>
+                                                        <small class="text-black-50">سایز تصویر لوگو شرکت 200*400</small>
+                                                        <div class="form-check mb-2">
+                                                            <input type="checkbox" id="pic-remove">
+                                                            <label class="form-check-label mr-4" for="pic-remove">حذف تصویر</label>
+                                                        </div>
+                                                    </div>
+                                                    <!-- ./fileuploader view component -->
+                                                    <div class="input-group input-group-sm mb-3" dir="ltr">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">بارگذاری</span>
+                                                        </div>
+                                                        <div class="custom-file">
+                                                            <input type="file" class="custom-file-input" name="image" id="category-image" placeholder="انتخاب فایل">
+                                                            <label class="custom-file-label" for="category-image">انتخاب فایل</label>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row d-none">
+                                                        <div class="col-sm-12">
+                                                                    <span class="control-fileupload">
+                                                                        <label for="file1" class="text-left">لطفا تصویری را از روی کامپیوتر خود انتخاب کنید</label>
+                                                                        <input type="file">
+                                                                    </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr>
+
+                                            <!-- name -->
+                                            <div class="input-group input-group-sm mb-3" dir="ltr">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">نام دسته بندی</span>
+                                                </div>
+                                                <input id="category-title" name="name" dir="rtl" type="text" class="form-control ms-form-filed" placeholder="نام دسته بندی">
+                                                <div class="invalid-feedback">
+                                                    لطفا عنوان دسته بندی را وارد کنید
+                                                </div>
+                                            </div>
+
+                                            <!-- en name -->
+                                            <div class="input-group input-group-sm mb-3" dir="ltr">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">نام انگلیسی</span>
+                                                </div>
+                                                <input id="category-en-title" name="slug" dir="rtl" type="text" class="form-control ms-form-filed" placeholder="نام انگلیسی دسته بندی (جهت نمایش در URL)">
+                                                <div class="invalid-feedback">
+                                                    لطفا عنوان انگلیسی دسته بندی را وارد کنید
+                                                </div>
+                                            </div>
+
+                                            <!-- image alt -->
+                                            <div class="input-group input-group-sm mb-3" dir="ltr">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">متن جایگزین تصویر</span>
+                                                </div>
+                                                <input id="category-img-alt" name="image_alt" dir="rtl" type="text" class="form-control ms-form-filed" placeholder="متن جایگزین تصویر">
+                                                <div class="invalid-feedback">
+                                                    لطفا عنوان مناسبی را برای متن جایگزین تصویر وارد کنید
+                                                </div>
+                                            </div>
+
+                                            <!-- description -->
+                                            <div class="input-group input-group-sm" dir="ltr">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">توضیحات دسته</span>
+                                                </div>
+                                                <textarea id="category-description" dir="rtl" rows="3" class="form-control"></textarea>
+                                            </div>
+
+                                        </form>
+
+                                        <div class="modal-footer d-flex justify-content-end">
+                                            <button type="button" class="btn btn-success mr-1 btn-round" onclick="addCategory()">افزودن</button>
+                                            <button type="button" style="width: 120px" class="btn btn-info btn-round" onclick="editCategory()">تغییر</button>
+                                            <a onclick="clearCategoryForm()"><i class="fa fa-eraser text-white"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+
+                    <!-- sub-category -->
+                    <div class="card">
+                        <div class="card-header bg-default">
+                            <span class="text-white font-weight-bold">دسته بندی فرعی</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <!-- list sub-category -->
+                                <div class="col-6">
+                                    <!-- header -->
+                                    <div class="d-flex justify-content-around align-items-center row mx-0 mb-4 mb-md-0">
+                                        <div class="col-6">
+                                            <label for="select-category" class="d-none"></label>
+                                            <select class="custom-select" id="select-category">
+
+                                            </select>
+                                        </div>
+                                        <!-- serach -->
+                                        <div class="col-6">
+                                            <input id="search-sub-category" class="form-control mr-sm-2" type="search" placeholder="جست وجو" aria-label="Search">
+                                        </div>
+                                    </div>
+
+                                    <!-- table -->
+                                    <div class="table-responsive mt-2">
+                                        <table class="table table-order table-sm table-hover">
+                                            <thead class="thead-light">
+                                            <tr>
+                                                <th scope="col" style="width: 15%">ردیف</th>
+                                                <th scope="col" style="width: 65%">نام دسته بندی</th>
+                                                <th scope="col" style="width: 20%">حذف</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody id="sub-category-tbody" class="table-body">
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+
+                                <!-- edit/add sub-category section -->
+                                <div class="col-6">
+                                    <div class="border p-2">
+                                        <form id="form-add-sub-category-apc1">
+                                            <input type="hidden" id="sub-category-id">
+                                            <input type="hidden" id="sub-category-category">
+                                            <span>
+                                                این دسته‌بندی در
+                                                <strong style="color: #0fafdd" id="cat-name-in-add-sub"></strong>
+                                                اضافه میشود.
+                                            </span>
+
+                                            <!--image file upoad sample-->
+                                            <div class="form-group col-md-12 mt-2">
+                                                <div class="box text-center">
+                                                    <!-- fileuploader view component -->
+                                                    <div class="text-center">
+                                                        <div class="margin-bottom-20">
+                                                            <img id="img-sub-category-selected" class="thumbnail box-center margin-top-20 img-thumbnail" alt="No image"
+                                                                 src="{% static 'assets/images/camera.svg' %}" style="width: 400px; height: 200px; object-fit: contain">
+                                                        </div>
+                                                        <small class="text-black-50">سایز تصویر لوگو شرکت 200*400</small>
+                                                        <div class="form-check mb-2">
+                                                            <input type="checkbox" id="pic-sub-category-remove">
+                                                            <label class="form-check-label mr-4" for="pic-remove">حذف تصویر</label>
+                                                        </div>
+                                                    </div>
+                                                    <!-- ./fileuploader view component -->
+                                                    <div class="input-group input-group-sm mb-3" dir="ltr">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">بارگذاری</span>
+                                                        </div>
+                                                        <div class="custom-file">
+                                                            <input type="file" class="custom-file-input" name="image" id="sub-category-image" placeholder="انتخاب فایل">
+                                                            <label class="custom-file-label" for="sub-category-image">انتخاب فایل</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr>
+
+                                            <!-- category -->
+                                            <!--div class="input-group input-group-sm mb-3" dir="ltr">
+                                                <div class="input-group-prepend ">
+                                                    <span class="input-group-text">دسته بندی</span>
+                                                </div>
+                                                <input id="sub-category-category" name="category" dir="rtl" type="text" class="form-control ms-form-filed" placeholder="دسته بندی">
+                                            </div-->
+
+                                            <!-- name -->
+                                            <div class="input-group input-group-sm mb-3" dir="ltr">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">نام دسته بندی</span>
+                                                </div>
+                                                <input id="sub-category-title" name="name" dir="rtl" type="text" class="form-control ms-form-filed" placeholder="عنوان دسته بندی فرعی">
+                                                <div class="invalid-feedback">
+                                                    لطفا عنوان دسته بندی فرعی را وارد کنید
+                                                </div>
+                                            </div>
+
+                                            <!-- en name -->
+                                            <div class="input-group input-group-sm mb-3" dir="ltr">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">نام انگلیسی</span>
+                                                </div>
+                                                <input id="sub-category-en-title" name="slug" dir="rtl" type="text" class="form-control ms-form-filed" placeholder="نام انگلیسی دسته بندی (جهت نمایش در URL)">
+                                                <div class="invalid-feedback">
+                                                    لطفا عنوان انگلیسی دسته بندی فرعی را وارد کنید
+                                                </div>
+                                            </div>
+
+                                            <!-- image alt -->
+                                            <div class="input-group input-group-sm mb-3" dir="ltr">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">متن جایگزین تصویر</span>
+                                                </div>
+                                                <input id="sub-category-img-alt" name="image_alt" dir="rtl" type="text" class="form-control ms-form-filed" placeholder="متن جایگزین تصویر">
+                                                <div class="invalid-feedback">
+                                                    لطفا عنوان مناسبی را برای متن جایگزین تصویر وارد کنید
+                                                </div>
+                                            </div>
+
+                                            <!-- description -->
+                                            <div class="input-group input-group-sm" dir="ltr">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">توضیحات دسته</span>
+                                                </div>
+                                                <textarea id="sub-category-description" dir="rtl" rows="3" class="form-control"></textarea>
+                                            </div>
+
+                                        </form>
+
+                                        <div class="modal-footer d-flex justify-content-end">
+                                            <button type="button" class="btn btn-success mr-1 btn-round" onclick="addSubCategory()">افزودن</button>
+                                            <button type="button" style="width: 120px" class="btn btn-info btn-round" onclick="editSubCategory()">تغییر</button>
+                                            <a onclick="clearSubCategoryForm()"><i class="fa fa-eraser text-white"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+
+                    <!-- sub-sub-category -->
+                    <div class="card">
+                        <div class="card-header bg-default">
+                            <span class="text-white font-weight-bold">دسته بندی فرعی 2</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <!-- list sub-category -->
+                                <div class="col-6">
+                                    <!-- header -->
+                                    <div class="d-flex justify-content-around align-items-center row mx-0 mb-4 mb-md-0">
+                                        <div class="col-6">
+                                            <label for="select-sub-category" class="d-none"></label>
+                                            <select class="custom-select" id="select-sub-category">
+
+                                            </select>
+                                        </div>
+                                        <!-- serach -->
+                                        <div class="col-6">
+                                            <input id="search-sub-sub-category" class="form-control mr-sm-2" type="search" placeholder="جست وجو" aria-label="Search">
+                                        </div>
+                                    </div>
+
+                                    <!-- table -->
+                                    <div class="table-responsive mt-2">
+                                        <table class="table table-order table-sm table-hover">
+                                            <thead class="thead-light">
+                                            <tr>
+                                                <th scope="col" style="width: 15%">ردیف</th>
+                                                <th scope="col" style="width: 65%">نام دسته بندی</th>
+                                                <th scope="col" style="width: 20%">حذف</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody id="sub-sub-category-tbody" class="table-body">
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+
+                                <!-- edit/add sub-sub-category section -->
+                                <div class="col-6">
+                                    <div class="border p-2">
+                                        <form id="form-add-sub-sub-category-apc1">
+                                            <input type="hidden" id="sub-sub-category-id">
+                                            <input type="hidden" id="sub-sub-category-parent">
+                                            <span>
+                                                این دسته‌بندی در
+                                                <strong style="color: #0fafdd" id="sub-cat-name-in-add-sub"></strong>
+                                                اضافه میشود.
+                                            </span>
+
+                                            <!--image file upoad sample-->
+                                            <div class="form-group col-md-12 mt-2">
+                                                <div class="box text-center">
+                                                    <!-- fileuploader view component -->
+                                                    <div class="text-center">
+                                                        <div class="margin-bottom-20">
+                                                            <img id="img-sub-sub-category-selected" class="thumbnail box-center margin-top-20 img-thumbnail" alt="No image"
+                                                                 src="{% static 'assets/images/camera.svg' %}" style="width: 400px; height: 200px; object-fit: contain">
+                                                        </div>
+                                                        <small class="text-black-50">سایز تصویر لوگو شرکت 200*400</small>
+                                                        <div class="form-check mb-2">
+                                                            <input type="checkbox" id="pic-sub-sub-category-remove">
+                                                            <label class="form-check-label mr-4" for="pic-remove">حذف تصویر</label>
+                                                        </div>
+                                                    </div>
+                                                    <!-- ./fileuploader view component -->
+                                                    <div class="input-group input-group-sm mb-3" dir="ltr">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text">بارگذاری</span>
+                                                        </div>
+                                                        <div class="custom-file">
+                                                            <input type="file" class="custom-file-input" name="image" id="sub-sub-category-image" placeholder="انتخاب فایل">
+                                                            <label class="custom-file-label" for="sub-sub-category-image">انتخاب فایل</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr>
+
+                                            <!-- name -->
+                                            <div class="input-group input-group-sm mb-3" dir="ltr">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">نام دسته بندی</span>
+                                                </div>
+                                                <input id="sub-sub-category-title" name="name" dir="rtl" type="text" class="form-control ms-form-filed" placeholder="عنوان دسته بندی فرعی 2">
+                                                <div class="invalid-feedback">
+                                                    لطفا عنوان دسته بندی فرعی 2 را وارد کنید
+                                                </div>
+                                            </div>
+
+                                            <!-- en name -->
+                                            <div class="input-group input-group-sm mb-3" dir="ltr">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">نام انگلیسی</span>
+                                                </div>
+                                                <input id="sub-sub-category-en-title" name="slug" dir="rtl" type="text" class="form-control ms-form-filed" placeholder="نام انگلیسی دسته بندی (جهت نمایش در URL)">
+                                                <div class="invalid-feedback">
+                                                    لطفا عنوان انگلیسی دسته بندی فرعی 2 را وارد کنید
+                                                </div>
+                                            </div>
+
+                                            <!-- image alt -->
+                                            <div class="input-group input-group-sm mb-3" dir="ltr">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">متن جایگزین تصویر</span>
+                                                </div>
+                                                <input id="sub-sub-category-img-alt" name="image_alt" dir="rtl" type="text" class="form-control ms-form-filed" placeholder="متن جایگزین تصویر">
+                                                <div class="invalid-feedback">
+                                                    لطفا عنوان مناسبی را برای متن جایگزین تصویر وارد کنید
+                                                </div>
+                                            </div>
+
+                                            <!-- returned time -->
+                                            <div class="input-group input-group-sm mb-3" dir="ltr">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">مهلت بازگشت</span>
+                                                </div>
+                                                <input id="sub-sub-category-return-time" name="image_alt" dir="rtl" type="text" class="form-control ms-form-filed" placeholder="متن جایگزین تصویر">
+                                                <div class="invalid-feedback">
+                                                    لطفا مقدار مناسبی را وارد کنید
+                                                </div>
+                                            </div>
+
+                                            <!-- description -->
+                                            <div class="input-group input-group-sm" dir="ltr">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">توضیحات دسته</span>
+                                                </div>
+                                                <textarea id="sub-sub-category-description" dir="rtl" rows="3" class="form-control"></textarea>
+                                            </div>
+
+                                        </form>
+
+                                        <div class="modal-footer d-flex justify-content-end">
+                                            <button type="button" class="btn btn-success mr-1 btn-round" onclick="addSubSubCategory()">افزودن</button>
+                                            <button type="button" style="width: 120px" class="btn btn-info btn-round" onclick="editSubSubCategory()">تغییر</button>
+                                            <a onclick="clearSubSubCategoryForm()"><i class="fa fa-eraser text-white"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+
+                </div>
+                {% include 'manager_panel/_management-panel-sidebar.html' %}
+            </div>
+        </div>
+        <div>
+            <div class="modal fade" id="delete-category-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="delete-category-label">حذف دسته</h5>
+                        </div>
+                        <hr style="width: 100%">
+                        <div class="modal-body">
+                            <strong>
+                                با حذف دسته
+                                <b id="category-select-delete" class="text-danger"></b>
+                                ، تمام زیر دسته های آن نیز حذف خواهند شد!
+                                <br>
+                                آیا مطمئن هستید؟
+                            </strong>
+                        </div>
+                        <hr style="width: 100%;">
+                        <div class="modal-footer d-flex justify-content-end">
+                            <button type="button" class="btn btn-info ml-1" onclick="submitDeleteCategory()" style="width: 100px!important;">تایید</button>
+                            <button type="button" class="btn btn-secondary mr-1" style="width: 100px" data-dismiss="modal">لغو</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="modal fade" id="delete-sub-category-modal" tabindex="-1" role="dialog" aria-labelledby="delete-category-label" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="delete-category-label">حذف دسته</h5>
+                        </div>
+                        <hr style="width: 100%">
+                        <div class="modal-body">
+                            <strong>
+                                آیا از حذف زیر دسته
+                                <b id="sub-category-select-delete" class="text-danger"></b>
+                                مطمئن هستید؟
+                            </strong>
+                        </div>
+                        <hr style="width: 100%;">
+                        <div class="modal-footer d-flex justify-content-end">
+                            <button type="button" class="btn btn-info ml-1" onclick="submitDeleteSubCategory()" style="width: 100px!important;">تایید</button>
+                            <button type="button" class="btn btn-secondary mr-1" style="width: 100px" data-dismiss="modal">لغو</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="modal fade" id="delete-sub-sub-category-modal" tabindex="-1" role="dialog" aria-labelledby="delete-sub-sub-category-label" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="delete-sub-sub-category-label">حذف دسته</h5>
+                        </div>
+                        <hr style="width: 100%">
+                        <div class="modal-body">
+                            <strong>
+                                آیا از حذف زیر دسته
+                                <b id="sub-sub-category-select-delete" class="text-danger"></b>
+                                مطمئن هستید؟
+                            </strong>
+                        </div>
+                        <hr style="width: 100%;">
+                        <div class="modal-footer d-flex justify-content-end">
+                            <button type="button" class="btn btn-info ml-1" onclick="submitDeleteSubSubCategory()" style="width: 100px!important;">تایید</button>
+                            <button type="button" class="btn btn-secondary mr-1" style="width: 100px" data-dismiss="modal">لغو</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
+
+
+
+{% block js %}
+    {# JS files... #}
+    <script type="text/javascript" src="{% static 'js/add-product-category.js' %}"></script>
+{% endblock %}
